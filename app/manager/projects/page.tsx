@@ -6,7 +6,7 @@ import { AppLayout } from '@/components/layout/AppLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { api } from '@/lib/api-client';
+import { apiClient } from '@/lib/api-client';
 import { Project } from '@/types';
 import { Plus, Loader2, FileText, Calendar, Trash2 } from 'lucide-react';
 
