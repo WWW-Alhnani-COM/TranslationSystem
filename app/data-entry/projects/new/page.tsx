@@ -135,7 +135,7 @@ export default function NewProjectPage() {
         fileFormData.append('file', uploadFile);
         try {
           const token = localStorage.getItem("token");
-          await fetch(`http://localhost:5296/api/Paragraphs/upload/${newProjectId}`, {
+          await fetch(`http://samali1-001-site1.stempurl.com/api/Paragraphs/upload/${newProjectId}`, {
             method: 'POST',
             headers: {
               ...(token && { "Authorization": `Bearer ${token}` })
@@ -161,7 +161,7 @@ export default function NewProjectPage() {
           const token = localStorage.getItem("token");
           const splitFormData = new FormData();
           splitFormData.append('text', autoSplitText);
-          await fetch(`http://localhost:5296/api/Paragraphs/auto-split/${newProjectId}`, {
+          await fetch(`http://samali1-001-site1.stempurl.com/api/Paragraphs/auto-split/${newProjectId}`, {
             method: 'POST',
             headers: {
               ...(token && { "Authorization": `Bearer ${token}` })

@@ -1,7 +1,7 @@
 // src/lib/api-client.ts
 import { toast } from "@/components/ui/use-toast";
 
-const API_BASE_URL = "http://localhost:5296/api";
+const API_BASE_URL = "http://samali1-001-site1.stempurl.com/api";
 
 // دالة آمنة للحصول على التوكن (فقط في بيئة المتصفح)
 const getToken = (): string | null => {

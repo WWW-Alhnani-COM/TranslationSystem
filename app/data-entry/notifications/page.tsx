@@ -22,7 +22,7 @@ export default function NotificationsPage() {
     if (!user?.userId) return;
 
     try {
-      const response = await fetch(`http://localhost:5296/api/Notifications/user/${user.userId}`);
+      const response = await fetch(`http://samali1-001-site1.stempurl.com/api/Notifications/user/${user.userId}`);
       const data = await response.json();
       
       if (data.success) {

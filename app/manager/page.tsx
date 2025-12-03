@@ -187,7 +187,7 @@ export default function ManagerDashboardPage() {
     const fetchData = async () => {
       try {
         // Fetch Dashboard Stats
-        const statsResponse = await fetch(`http://localhost:5296/api/Statistics/dashboard`);
+        const statsResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Statistics/dashboard`);
         if (!statsResponse.ok) {
           throw new Error(`HTTP error! status: ${statsResponse.status}`);
         }
@@ -199,7 +199,7 @@ export default function ManagerDashboardPage() {
         }
 
         // Fetch All Users
-        const usersResponse = await fetch(`http://localhost:5296/api/Users`);
+        const usersResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Users`);
         if (!usersResponse.ok) {
           throw new Error(`HTTP error! status: ${usersResponse.status}`);
         }
@@ -211,7 +211,7 @@ export default function ManagerDashboardPage() {
         }
 
         // Fetch All Projects
-        const projectsResponse = await fetch(`http://localhost:5296/api/Projects`);
+        const projectsResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Projects`);
         if (!projectsResponse.ok) {
           throw new Error(`HTTP error! status: ${projectsResponse.status}`);
         }
@@ -223,7 +223,7 @@ export default function ManagerDashboardPage() {
         }
 
         // Fetch Assignments for Manager (optional)
-        const assignmentsResponse = await fetch(`http://localhost:5296/api/Assignments`);
+        const assignmentsResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Assignments`);
         if (!assignmentsResponse.ok) {
           console.warn(`Failed to fetch assignments: ${assignmentsResponse.status}`);
         } else {
@@ -236,7 +236,7 @@ export default function ManagerDashboardPage() {
         }
 
         // Fetch User Performance (if available)
-        const performanceResponse = await fetch(`http://localhost:5296/api/Statistics/users/performance`);
+        const performanceResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Statistics/users/performance`);
         if (!performanceResponse.ok) {
           console.warn(`Failed to fetch user performance: ${performanceResponse.status}`);
           // Don't throw error, continue without performance data

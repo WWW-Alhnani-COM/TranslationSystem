@@ -41,7 +41,7 @@ export function AppHeader({ user, onMenuToggle, isSidebarCollapsed, logout }: Ap
     
     try {
       setNotificationsError(null);
-      const response = await fetch(`http://localhost:5296/api/Notifications/user/${user.userId}/unread`, {
+      const response = await fetch(`http://samali1-001-site1.stempurl.com/api/Notifications/user/${user.userId}/unread`, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

@@ -29,7 +29,7 @@ import {
   Loader2
 } from 'lucide-react';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5296/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://samali1-001-site1.stempurl.com/api';
 
 interface AssignmentFormProps {
   projectId: number;

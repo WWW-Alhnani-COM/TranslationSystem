@@ -102,7 +102,7 @@ export default function ManagerUsersPage() {
     const fetchData = async () => {
       try {
         // Fetch All Users
-        const usersResponse = await fetch(`http://localhost:5296/api/Users`);
+        const usersResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Users`);
         if (!usersResponse.ok) {
           throw new Error(`HTTP error! status: ${usersResponse.status}`);
         }

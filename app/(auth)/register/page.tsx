@@ -47,7 +47,7 @@ export default function RegisterPage() {
     setSuccess(null);
 
     try {
-      const url = 'http://localhost:5296/api/users/register';
+      const url = 'http://samali1-001-site1.stempurl.com/api/users/register';
       
       const response = await fetch(url, {
         method: 'POST',

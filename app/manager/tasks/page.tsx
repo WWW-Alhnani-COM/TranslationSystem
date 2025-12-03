@@ -119,7 +119,7 @@ export default function ManagerTasksPage() {
     const fetchData = async () => {
       try {
         // Fetch All Assignments
-        const assignmentsResponse = await fetch(`http://localhost:5296/api/Assignments`);
+        const assignmentsResponse = await fetch(`http://samali1-001-site1.stempurl.com/api/Assignments`);
         if (!assignmentsResponse.ok) {
           throw new Error(`HTTP error! status: ${assignmentsResponse.status}`);
         }

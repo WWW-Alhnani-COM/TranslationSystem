@@ -48,7 +48,7 @@ export default function LanguagesPage() {
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const response = await fetch('http://localhost:5296/api/Languages');
+        const response = await fetch('http://samali1-001-site1.stempurl.com/api/Languages');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -110,7 +110,7 @@ export default function LanguagesPage() {
 
   const toggleLanguageStatus = async (languageId: number, isActive: boolean) => {
     try {
-      const response = await fetch(`http://localhost:5296/api/Languages/${languageId}/${isActive ? 'deactivate' : 'activate'}`, {
+      const response = await fetch(`http://samali1-001-site1.stempurl.com/api/Languages/${languageId}/${isActive ? 'deactivate' : 'activate'}`, {
         method: 'PATCH',
       });
 

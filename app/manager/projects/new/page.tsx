@@ -54,7 +54,7 @@ export default function NewProjectPage() {
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const response = await fetch('http://localhost:5296/api/Languages/active');
+        const response = await fetch('http://samali1-001-site1.stempurl.com/api/Languages/active');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -145,7 +145,7 @@ export default function NewProjectPage() {
         deadline: formData.deadline || undefined
       });
 
-      const response = await fetch('http://localhost:5296/api/Projects', {
+      const response = await fetch('http://samali1-001-site1.stempurl.com/api/Projects', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

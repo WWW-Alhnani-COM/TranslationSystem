@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5296/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://samali1-001-site1.stempurl.com/api';
 
 export default function TranslatePage({ params }: { params: Promise<{ assignmentId: string }> }) {
   const resolvedParams = use(params);

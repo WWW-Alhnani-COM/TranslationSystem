@@ -14,7 +14,7 @@ export async function getSupervisorId(): Promise<number> {
   }
 
   try {
-    const response = await fetch('http://localhost:5296/api/Users/me', {
+    const response = await fetch('http://samali1-001-site1.stempurl.com/api/Users/me', {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',

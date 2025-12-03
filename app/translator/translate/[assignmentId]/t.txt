@@ -562,10 +562,10 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'http://localhost:5296/api/Assignments/user/1' \
+  'http://samali1-001-site1.stempurl.com/api/Assignments/user/1' \
   -H 'accept: text/plain'
 Request URL
-http://localhost:5296/api/Assignments/user/1
+http://samali1-001-site1.stempurl.com/api/Assignments/user/1
 Server response
 Code	Details
 200	
@@ -641,10 +641,10 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'http://localhost:5296/api/Assignments/project/2' \
+  'http://samali1-001-site1.stempurl.com/api/Assignments/project/2' \
   -H 'accept: text/plain'
 Request URL
-http://localhost:5296/api/Assignments/project/2
+http://samali1-001-site1.stempurl.com/api/Assignments/project/2
 Server response
 Code	Details
 200	
@@ -720,10 +720,10 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'http://localhost:5296/api/Assignments/role/Translator' \
+  'http://samali1-001-site1.stempurl.com/api/Assignments/role/Translator' \
   -H 'accept: text/plain'
 Request URL
-http://localhost:5296/api/Assignments/role/Translator
+http://samali1-001-site1.stempurl.com/api/Assignments/role/Translator
 Server response
 Code	Details
 200	
@@ -896,10 +896,10 @@ Responses
 Curl
 
 curl -X 'GET' \
-  'http://localhost:5296/api/Languages' \
+  'http://samali1-001-site1.stempurl.com/api/Languages' \
   -H 'accept: text/plain'
 Request URL
-http://localhost:5296/api/Languages
+http://samali1-001-site1.stempurl.com/api/Languages
 Server response
 Code	Details
 200	
@@ -3072,7 +3072,7 @@ Responses
 Curl
 
 curl -X 'POST' \
-  'http://localhost:5296/api/Translations' \
+  'http://samali1-001-site1.stempurl.com/api/Translations' \
   -H 'accept: text/plain' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -3082,7 +3082,7 @@ curl -X 'POST' \
   "status": "string"
 }'
 Request URL
-http://localhost:5296/api/Translations
+http://samali1-001-site1.stempurl.com/api/Translations
 Server response
 Code	Details
 200	

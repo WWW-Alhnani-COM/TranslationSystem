@@ -260,7 +260,7 @@ export default function ProjectParagraphsPage() {
 
       // نستخدم fetch مباشرة لرفع الملفات
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5296/api/Paragraphs/upload/${projectId}`, {
+      const response = await fetch(`http://samali1-001-site1.stempurl.com/api/Paragraphs/upload/${projectId}`, {
         method: 'POST',
         headers: {
           ...(token && { "Authorization": `Bearer ${token}` })
@@ -347,7 +347,7 @@ export default function ProjectParagraphsPage() {
       const formData = new FormData();
       formData.append('text', autoSplitText);
 
-      const response = await fetch(`http://localhost:5296/api/Paragraphs/auto-split/${projectId}`, {
+      const response = await fetch(`http://samali1-001-site1.stempurl.com/api/Paragraphs/auto-split/${projectId}`, {
         method: 'POST',
         headers: {
           ...(token && { "Authorization": `Bearer ${token}` })
