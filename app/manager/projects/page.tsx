@@ -22,7 +22,7 @@ export default function ManagerProjectsPage() {
   const loadProjects = async () => {
     try {
       setLoading(true);
-      const response = await api.projects.getAll();
+      const response = await apiClient.projects.getAll();
       if (response.success && response.data) {
         setProjects([]);
       }
