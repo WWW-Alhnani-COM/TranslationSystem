@@ -1,0 +1,4745 @@
+Select a definition
+
+TranslationManagementSystem v1
+TranslationManagementSystem
+ 1.0 
+OAS 3.0
+http://localhost:5296/Swagger/v1/swagger.json
+Approvals
+
+
+POST
+/api/Approvals
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "reviewId": 2147483647,
+  "supervisorAssignmentId": 2147483647,
+  "finalText": "string",
+  "selectedVersion": "string",
+  "decision": "string",
+  "comments": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "approvalId": 0,
+    "reviewId": 0,
+    "supervisorAssignmentId": 0,
+    "supervisorName": "string",
+    "finalText": "string",
+    "selectedVersion": "string",
+    "decision": "string",
+    "comments": "string",
+    "approvedAt": "2025-11-25T00:47:40.685Z",
+    "projectName": "string",
+    "paragraphText": "string"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.685Z"
+}
+No links
+
+GET
+/api/Approvals/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "approvalId": 0,
+    "reviewId": 0,
+    "supervisorAssignmentId": 0,
+    "supervisorName": "string",
+    "finalText": "string",
+    "selectedVersion": "string",
+    "decision": "string",
+    "comments": "string",
+    "approvedAt": "2025-11-25T00:47:40.697Z",
+    "projectName": "string",
+    "paragraphText": "string"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.697Z"
+}
+No links
+
+DELETE
+/api/Approvals/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.712Z"
+}
+No links
+
+GET
+/api/Approvals/project/{projectId}
+
+Parameters
+Try it out
+Name	Description
+projectId *
+integer($int32)
+(path)
+projectId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "approvalId": 0,
+      "reviewId": 0,
+      "supervisorAssignmentId": 0,
+      "supervisorName": "string",
+      "finalText": "string",
+      "selectedVersion": "string",
+      "decision": "string",
+      "comments": "string",
+      "approvedAt": "2025-11-25T00:47:40.725Z",
+      "projectName": "string",
+      "paragraphText": "string"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.725Z"
+}
+No links
+
+GET
+/api/Approvals/supervisor/{supervisorId}
+
+Parameters
+Try it out
+Name	Description
+supervisorId *
+integer($int32)
+(path)
+supervisorId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "approvalId": 0,
+      "reviewId": 0,
+      "supervisorAssignmentId": 0,
+      "supervisorName": "string",
+      "finalText": "string",
+      "selectedVersion": "string",
+      "decision": "string",
+      "comments": "string",
+      "approvedAt": "2025-11-25T00:47:40.741Z",
+      "projectName": "string",
+      "paragraphText": "string"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.741Z"
+}
+No links
+
+PATCH
+/api/Approvals/{id}/approve
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.751Z"
+}
+No links
+
+PATCH
+/api/Approvals/{id}/reject
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.763Z"
+}
+No links
+Assignments
+
+
+POST
+/api/Assignments
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "projectId": 2147483647,
+  "userId": 2147483647,
+  "role": "string",
+  "targetLanguageId": 2147483647,
+  "deadline": "2025-11-25T00:47:40.779Z"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "assignmentId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "userId": 0,
+    "userName": "string",
+    "userEmail": "string",
+    "role": "string",
+    "targetLanguageId": 0,
+    "targetLanguageName": "string",
+    "targetLanguageCode": "string",
+    "status": "string",
+    "assignedAt": "2025-11-25T00:47:40.785Z",
+    "deadline": "2025-11-25T00:47:40.785Z",
+    "completedAt": "2025-11-25T00:47:40.785Z",
+    "isOverdue": true,
+    "translationCount": 0,
+    "reviewCount": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.785Z"
+}
+No links
+
+GET
+/api/Assignments
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "assignmentId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "userId": 0,
+      "userName": "string",
+      "userEmail": "string",
+      "role": "string",
+      "targetLanguageId": 0,
+      "targetLanguageName": "string",
+      "targetLanguageCode": "string",
+      "status": "string",
+      "assignedAt": "2025-11-25T00:47:40.793Z",
+      "deadline": "2025-11-25T00:47:40.793Z",
+      "completedAt": "2025-11-25T00:47:40.793Z",
+      "isOverdue": true,
+      "translationCount": 0,
+      "reviewCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.793Z"
+}
+No links
+
+GET
+/api/Assignments/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "assignmentId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "userId": 0,
+    "userName": "string",
+    "userEmail": "string",
+    "role": "string",
+    "targetLanguageId": 0,
+    "targetLanguageName": "string",
+    "targetLanguageCode": "string",
+    "status": "string",
+    "assignedAt": "2025-11-25T00:47:40.805Z",
+    "deadline": "2025-11-25T00:47:40.805Z",
+    "completedAt": "2025-11-25T00:47:40.805Z",
+    "isOverdue": true,
+    "translationCount": 0,
+    "reviewCount": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.806Z"
+}
+No links
+
+PUT
+/api/Assignments/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "status": "string",
+  "deadline": "2025-11-25T00:47:40.825Z",
+  "completedAt": "2025-11-25T00:47:40.825Z"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "assignmentId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "userId": 0,
+    "userName": "string",
+    "userEmail": "string",
+    "role": "string",
+    "targetLanguageId": 0,
+    "targetLanguageName": "string",
+    "targetLanguageCode": "string",
+    "status": "string",
+    "assignedAt": "2025-11-25T00:47:40.830Z",
+    "deadline": "2025-11-25T00:47:40.830Z",
+    "completedAt": "2025-11-25T00:47:40.830Z",
+    "isOverdue": true,
+    "translationCount": 0,
+    "reviewCount": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.830Z"
+}
+No links
+
+DELETE
+/api/Assignments/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.842Z"
+}
+No links
+
+GET
+/api/Assignments/user/{userId}
+
+Parameters
+Cancel
+Name	Description
+userId *
+integer($int32)
+(path)
+1
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'http://localhost:5296/api/Assignments/user/1' \
+  -H 'accept: text/plain'
+Request URL
+http://localhost:5296/api/Assignments/user/1
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "success": true,
+  "message": "تم جلب مهام المستخدم بنجاح",
+  "data": [],
+  "errors": null,
+  "timestamp": "2025-11-24T22:25:49.6822815Z"
+}
+Response headers
+ content-type: application/json; charset=utf-8 
+ date: Mon,24 Nov 2025 22:25:50 GMT 
+ server: Kestrel 
+ transfer-encoding: chunked 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "assignmentId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "userId": 0,
+      "userName": "string",
+      "userEmail": "string",
+      "role": "string",
+      "targetLanguageId": 0,
+      "targetLanguageName": "string",
+      "targetLanguageCode": "string",
+      "status": "string",
+      "assignedAt": "2025-11-25T00:47:40.855Z",
+      "deadline": "2025-11-25T00:47:40.855Z",
+      "completedAt": "2025-11-25T00:47:40.855Z",
+      "isOverdue": true,
+      "translationCount": 0,
+      "reviewCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.855Z"
+}
+No links
+
+GET
+/api/Assignments/project/{projectId}
+
+Parameters
+Cancel
+Name	Description
+projectId *
+integer($int32)
+(path)
+2
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'http://localhost:5296/api/Assignments/project/2' \
+  -H 'accept: text/plain'
+Request URL
+http://localhost:5296/api/Assignments/project/2
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "success": true,
+  "message": "تم جلب مهام المشروع بنجاح",
+  "data": [],
+  "errors": null,
+  "timestamp": "2025-11-24T22:26:32.8851135Z"
+}
+Response headers
+ content-type: application/json; charset=utf-8 
+ date: Mon,24 Nov 2025 22:26:32 GMT 
+ server: Kestrel 
+ transfer-encoding: chunked 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "assignmentId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "userId": 0,
+      "userName": "string",
+      "userEmail": "string",
+      "role": "string",
+      "targetLanguageId": 0,
+      "targetLanguageName": "string",
+      "targetLanguageCode": "string",
+      "status": "string",
+      "assignedAt": "2025-11-25T00:47:40.872Z",
+      "deadline": "2025-11-25T00:47:40.872Z",
+      "completedAt": "2025-11-25T00:47:40.872Z",
+      "isOverdue": true,
+      "translationCount": 0,
+      "reviewCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.872Z"
+}
+No links
+
+GET
+/api/Assignments/role/{role}
+
+Parameters
+Cancel
+Name	Description
+role *
+string
+(path)
+Translator
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'http://localhost:5296/api/Assignments/role/Translator' \
+  -H 'accept: text/plain'
+Request URL
+http://localhost:5296/api/Assignments/role/Translator
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "success": true,
+  "message": "تم جلب المهام بدور Translator بنجاح",
+  "data": [
+    {
+      "assignmentId": 43,
+      "projectId": 5,
+      "projectName": "lil``",
+      "userId": 2,
+      "userName": "محمد عبدالروؤف",
+      "userEmail": "m@m.m",
+      "role": "Translator",
+      "targetLanguageId": 1,
+      "targetLanguageName": "العربية",
+      "targetLanguageCode": "ar",
+      "status": "Pending",
+      "assignedAt": "2025-11-24T20:51:14.191399",
+      "deadline": "2025-12-01T20:51:14.008",
+      "completedAt": null,
+      "isOverdue": false,
+      "translationCount": 0,
+      "reviewCount": 0
+    },
+    {
+      "assignmentId": 26,
+      "projectId": 4,
+      "projectName": "برمجة ",
+      "userId": 2,
+      "userName": "محمد عبدالروؤف",
+      "userEmail": "m@m.m",
+      "role": "Translator",
+      "targetLanguageId": 3,
+      "targetLanguageName": "Français",
+      "targetLanguageCode": "fr",
+      "status": "Pending",
+      "assignedAt": "2025-11-24T04:09:48.401675",
+      "deadline": "2025-12-01T04:09:48.321",
+      "completedAt": null,
+      "isOverdue": false,
+      "translationCount": 0,
+      "reviewCount": 0
+    },
+    {
+      "assignmentId": 25,
+      "projectId": 4,
+      "projectName": "برمجة ",
+      "userId": 2,
+      "userName": "محمد عبدالروؤف",
+      "userEmail": "m@m.m",
+      "role": "Translator",
+      "targetLanguageId": 2,
+      "targetLanguageName": "English",
+      "targetLanguageCode": "en",
+      "status": "Pending",
+      "assignedAt": "2025-11-24T04:09:47.877501",
+      "deadline": "2025-12-01T04:09:47.79",
+      "completedAt": null,
+      "isOverdue": false,
+      "translationCount": 0,
+      "reviewCount": 0
+    }
+  ],
+  "errors": null,
+  "timestamp": "2025-11-24T22:27:27.1528309Z"
+}
+Response headers
+ content-type: application/json; charset=utf-8 
+ date: Mon,24 Nov 2025 22:27:26 GMT 
+ server: Kestrel 
+ transfer-encoding: chunked 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "assignmentId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "userId": 0,
+      "userName": "string",
+      "userEmail": "string",
+      "role": "string",
+      "targetLanguageId": 0,
+      "targetLanguageName": "string",
+      "targetLanguageCode": "string",
+      "status": "string",
+      "assignedAt": "2025-11-25T00:47:40.891Z",
+      "deadline": "2025-11-25T00:47:40.891Z",
+      "completedAt": "2025-11-25T00:47:40.891Z",
+      "isOverdue": true,
+      "translationCount": 0,
+      "reviewCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.891Z"
+}
+No links
+
+PATCH
+/api/Assignments/{id}/status/{status}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+status *
+string
+(path)
+status
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.909Z"
+}
+No links
+Languages
+
+
+POST
+/api/Languages
+
+
+GET
+/api/Languages
+
+Parameters
+Cancel
+No parameters
+
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'GET' \
+  'http://localhost:5296/api/Languages' \
+  -H 'accept: text/plain'
+Request URL
+http://localhost:5296/api/Languages
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "success": true,
+  "message": "تم جلب اللغات بنجاح",
+  "data": [
+    {
+      "languageId": 1,
+      "languageName": "العربية",
+      "languageCode": "ar",
+      "textDirection": "rtl",
+      "isActive": true,
+      "projectCount": 2
+    },
+    {
+      "languageId": 2,
+      "languageName": "English",
+      "languageCode": "en",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 2
+    },
+    {
+      "languageId": 3,
+      "languageName": "Français",
+      "languageCode": "fr",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 1
+    },
+    {
+      "languageId": 4,
+      "languageName": "Español",
+      "languageCode": "es",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 5,
+      "languageName": "Deutsch",
+      "languageCode": "de",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 6,
+      "languageName": "Italiano",
+      "languageCode": "it",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 7,
+      "languageName": "Português",
+      "languageCode": "pt",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 8,
+      "languageName": "中文",
+      "languageCode": "zh",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 9,
+      "languageName": "日本語",
+      "languageCode": "ja",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 10,
+      "languageName": "한국어",
+      "languageCode": "ko",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 11,
+      "languageName": "Русский",
+      "languageCode": "ru",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 12,
+      "languageName": "Türkçe",
+      "languageCode": "tr",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 13,
+      "languageName": "فارسی",
+      "languageCode": "fa",
+      "textDirection": "rtl",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 14,
+      "languageName": "हिन्दी",
+      "languageCode": "hi",
+      "textDirection": "ltr",
+      "isActive": true,
+      "projectCount": 0
+    },
+    {
+      "languageId": 15,
+      "languageName": "اردو",
+      "languageCode": "ur",
+      "textDirection": "rtl",
+      "isActive": true,
+      "projectCount": 0
+    }
+  ],
+  "errors": null,
+  "timestamp": "2025-11-24T22:37:41.6149245Z"
+}
+Response headers
+ content-type: application/json; charset=utf-8 
+ date: Mon,24 Nov 2025 22:37:40 GMT 
+ server: Kestrel 
+ transfer-encoding: chunked 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "languageId": 0,
+      "languageName": "string",
+      "languageCode": "string",
+      "textDirection": "string",
+      "isActive": true,
+      "projectCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.929Z"
+}
+No links
+
+GET
+/api/Languages/active
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "languageId": 0,
+      "languageName": "string",
+      "languageCode": "string",
+      "textDirection": "string",
+      "isActive": true,
+      "projectCount": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.939Z"
+}
+No links
+
+GET
+/api/Languages/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "languageId": 0,
+    "languageName": "string",
+    "languageCode": "string",
+    "textDirection": "string",
+    "isActive": true,
+    "projectCount": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.967Z"
+}
+No links
+
+PUT
+/api/Languages/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "languageName": "string",
+  "languageCode": "string",
+  "textDirection": "string",
+  "isActive": true
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "languageId": 0,
+    "languageName": "string",
+    "languageCode": "string",
+    "textDirection": "string",
+    "isActive": true,
+    "projectCount": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:40.993Z"
+}
+No links
+
+DELETE
+/api/Languages/{id}
+
+
+PATCH
+/api/Languages/{id}/activate
+
+
+PATCH
+/api/Languages/{id}/deactivate
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.006Z"
+}
+No links
+Notifications
+
+
+POST
+/api/Notifications
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "userId": 2147483647,
+  "title": "string",
+  "message": "string",
+  "relatedType": "string",
+  "relatedId": 0
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "notificationId": 0,
+    "userId": 0,
+    "title": "string",
+    "message": "string",
+    "relatedType": "string",
+    "relatedId": 0,
+    "isRead": true,
+    "createdAt": "2025-11-25T00:47:41.027Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.027Z"
+}
+No links
+
+GET
+/api/Notifications/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "notificationId": 0,
+    "userId": 0,
+    "title": "string",
+    "message": "string",
+    "relatedType": "string",
+    "relatedId": 0,
+    "isRead": true,
+    "createdAt": "2025-11-25T00:47:41.042Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.042Z"
+}
+No links
+
+DELETE
+/api/Notifications/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.054Z"
+}
+No links
+
+GET
+/api/Notifications/user/{userId}
+
+Parameters
+Try it out
+Name	Description
+userId *
+integer($int32)
+(path)
+userId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "notificationId": 0,
+      "userId": 0,
+      "title": "string",
+      "message": "string",
+      "relatedType": "string",
+      "relatedId": 0,
+      "isRead": true,
+      "createdAt": "2025-11-25T00:47:41.065Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.065Z"
+}
+No links
+
+GET
+/api/Notifications/user/{userId}/unread
+
+Parameters
+Try it out
+Name	Description
+userId *
+integer($int32)
+(path)
+userId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "notificationId": 0,
+      "userId": 0,
+      "title": "string",
+      "message": "string",
+      "relatedType": "string",
+      "relatedId": 0,
+      "isRead": true,
+      "createdAt": "2025-11-25T00:47:41.077Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.077Z"
+}
+No links
+
+PATCH
+/api/Notifications/{id}/read
+
+
+PATCH
+/api/Notifications/user/{userId}/read-all
+
+Paragraphs
+
+
+POST
+/api/Paragraphs
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "projectId": 2147483647,
+  "originalText": "string",
+  "paragraphType": "string",
+  "position": 0,
+  "wordCount": 0
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "paragraphId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "originalText": "string",
+    "paragraphType": "string",
+    "position": 0,
+    "wordCount": 0,
+    "createdAt": "2025-11-25T00:47:41.098Z",
+    "translations": [
+      {
+        "translationId": 0,
+        "translatedText": "string",
+        "status": "string",
+        "translatorName": "string",
+        "createdAt": "2025-11-25T00:47:41.098Z",
+        "targetLanguageName": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.098Z"
+}
+No links
+
+POST
+/api/Paragraphs/upload/{projectId}
+
+
+POST
+/api/Paragraphs/auto-split/{projectId}
+
+Parameters
+Try it out
+Name	Description
+projectId *
+integer($int32)
+(path)
+projectId
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "text": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "paragraphId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "originalText": "string",
+      "paragraphType": "string",
+      "position": 0,
+      "wordCount": 0,
+      "createdAt": "2025-11-25T00:47:41.121Z",
+      "translations": [
+        {
+          "translationId": 0,
+          "translatedText": "string",
+          "status": "string",
+          "translatorName": "string",
+          "createdAt": "2025-11-25T00:47:41.121Z",
+          "targetLanguageName": "string"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.122Z"
+}
+No links
+
+GET
+/api/Paragraphs/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "paragraphId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "originalText": "string",
+    "paragraphType": "string",
+    "position": 0,
+    "wordCount": 0,
+    "createdAt": "2025-11-25T00:47:41.136Z",
+    "translations": [
+      {
+        "translationId": 0,
+        "translatedText": "string",
+        "status": "string",
+        "translatorName": "string",
+        "createdAt": "2025-11-25T00:47:41.136Z",
+        "targetLanguageName": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.136Z"
+}
+No links
+
+PUT
+/api/Paragraphs/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "originalText": "string",
+  "paragraphType": "string",
+  "position": 0,
+  "wordCount": 0
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "paragraphId": 0,
+    "projectId": 0,
+    "projectName": "string",
+    "originalText": "string",
+    "paragraphType": "string",
+    "position": 0,
+    "wordCount": 0,
+    "createdAt": "2025-11-25T00:47:41.159Z",
+    "translations": [
+      {
+        "translationId": 0,
+        "translatedText": "string",
+        "status": "string",
+        "translatorName": "string",
+        "createdAt": "2025-11-25T00:47:41.159Z",
+        "targetLanguageName": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.159Z"
+}
+No links
+
+DELETE
+/api/Paragraphs/{id}
+
+
+GET
+/api/Paragraphs/project/{projectId}
+
+Parameters
+Try it out
+Name	Description
+projectId *
+integer($int32)
+(path)
+projectId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "paragraphId": 0,
+      "projectId": 0,
+      "projectName": "string",
+      "originalText": "string",
+      "paragraphType": "string",
+      "position": 0,
+      "wordCount": 0,
+      "createdAt": "2025-11-25T00:47:41.172Z",
+      "translations": [
+        {
+          "translationId": 0,
+          "translatedText": "string",
+          "status": "string",
+          "translatorName": "string",
+          "createdAt": "2025-11-25T00:47:41.172Z",
+          "targetLanguageName": "string"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.172Z"
+}
+No links
+
+PATCH
+/api/Paragraphs/{id}/position/{newPosition}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+newPosition *
+integer($int32)
+(path)
+newPosition
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.189Z"
+}
+No links
+Projects
+
+
+POST
+/api/Projects
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "projectName": "string",
+  "description": "string",
+  "sourceLanguageId": 2147483647,
+  "createdBy": 2147483647,
+  "targetLanguageIds": [
+    0
+  ]
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "projectId": 0,
+    "projectName": "string",
+    "description": "string",
+    "sourceLanguageId": 0,
+    "sourceLanguageName": "string",
+    "sourceLanguageCode": "string",
+    "createdBy": 0,
+    "creatorName": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.207Z",
+    "updatedAt": "2025-11-25T00:47:41.207Z",
+    "totalParagraphs": 0,
+    "wordCount": 0,
+    "targetLanguages": [
+      {
+        "languageId": 0,
+        "languageName": "string",
+        "languageCode": "string",
+        "textDirection": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.207Z"
+}
+No links
+
+GET
+/api/Projects
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "projectId": 0,
+      "projectName": "string",
+      "description": "string",
+      "sourceLanguageId": 0,
+      "sourceLanguageName": "string",
+      "sourceLanguageCode": "string",
+      "createdBy": 0,
+      "creatorName": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.217Z",
+      "updatedAt": "2025-11-25T00:47:41.217Z",
+      "totalParagraphs": 0,
+      "wordCount": 0,
+      "targetLanguages": [
+        {
+          "languageId": 0,
+          "languageName": "string",
+          "languageCode": "string",
+          "textDirection": "string"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.217Z"
+}
+No links
+
+GET
+/api/Projects/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "projectId": 0,
+    "projectName": "string",
+    "description": "string",
+    "sourceLanguageId": 0,
+    "sourceLanguageName": "string",
+    "sourceLanguageCode": "string",
+    "createdBy": 0,
+    "creatorName": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.256Z",
+    "updatedAt": "2025-11-25T00:47:41.256Z",
+    "totalParagraphs": 0,
+    "wordCount": 0,
+    "targetLanguages": [
+      {
+        "languageId": 0,
+        "languageName": "string",
+        "languageCode": "string",
+        "textDirection": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.256Z"
+}
+No links
+
+PUT
+/api/Projects/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "projectName": "string",
+  "description": "string",
+  "status": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "projectId": 0,
+    "projectName": "string",
+    "description": "string",
+    "sourceLanguageId": 0,
+    "sourceLanguageName": "string",
+    "sourceLanguageCode": "string",
+    "createdBy": 0,
+    "creatorName": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.283Z",
+    "updatedAt": "2025-11-25T00:47:41.283Z",
+    "totalParagraphs": 0,
+    "wordCount": 0,
+    "targetLanguages": [
+      {
+        "languageId": 0,
+        "languageName": "string",
+        "languageCode": "string",
+        "textDirection": "string"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.283Z"
+}
+No links
+
+DELETE
+/api/Projects/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.295Z"
+}
+No links
+
+GET
+/api/Projects/user/{userId}
+
+Parameters
+Try it out
+Name	Description
+userId *
+integer($int32)
+(path)
+userId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "projectId": 0,
+      "projectName": "string",
+      "description": "string",
+      "sourceLanguageId": 0,
+      "sourceLanguageName": "string",
+      "sourceLanguageCode": "string",
+      "createdBy": 0,
+      "creatorName": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.309Z",
+      "updatedAt": "2025-11-25T00:47:41.309Z",
+      "totalParagraphs": 0,
+      "wordCount": 0,
+      "targetLanguages": [
+        {
+          "languageId": 0,
+          "languageName": "string",
+          "languageCode": "string",
+          "textDirection": "string"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.309Z"
+}
+No links
+
+GET
+/api/Projects/status/{status}
+
+Parameters
+Try it out
+Name	Description
+status *
+string
+(path)
+status
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "projectId": 0,
+      "projectName": "string",
+      "description": "string",
+      "sourceLanguageId": 0,
+      "sourceLanguageName": "string",
+      "sourceLanguageCode": "string",
+      "createdBy": 0,
+      "creatorName": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.324Z",
+      "updatedAt": "2025-11-25T00:47:41.324Z",
+      "totalParagraphs": 0,
+      "wordCount": 0,
+      "targetLanguages": [
+        {
+          "languageId": 0,
+          "languageName": "string",
+          "languageCode": "string",
+          "textDirection": "string"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.324Z"
+}
+No links
+
+GET
+/api/Projects/{id}/stats
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "projectId": 0,
+    "projectName": "string",
+    "totalParagraphs": 0,
+    "translatedParagraphs": 0,
+    "reviewedParagraphs": 0,
+    "approvedParagraphs": 0,
+    "pendingAssignments": 0,
+    "completedAssignments": 0,
+    "progressPercentage": 0
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.338Z"
+}
+No links
+
+POST
+/api/Projects/{id}/target-languages/{languageId}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+languageId *
+integer($int32)
+(path)
+languageId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.358Z"
+}
+No links
+
+DELETE
+/api/Projects/{id}/target-languages/{languageId}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+languageId *
+integer($int32)
+(path)
+languageId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.375Z"
+}
+No links
+
+PATCH
+/api/Projects/{id}/status
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+"string"
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.399Z"
+}
+No links
+Reviews
+
+
+GET
+/api/Reviews
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "reviewId": 0,
+      "translationId": 0,
+      "originalText": "string",
+      "translatedText": "string",
+      "reviewerAssignmentId": 0,
+      "reviewerName": "string",
+      "reviewedText": "string",
+      "changesMade": "string",
+      "qualityScore": 0,
+      "comments": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.409Z",
+      "updatedAt": "2025-11-25T00:47:41.409Z",
+      "approvals": [
+        {
+          "approvalId": 0,
+          "finalText": "string",
+          "decision": "string",
+          "supervisorName": "string",
+          "approvedAt": "2025-11-25T00:47:41.409Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.409Z"
+}
+No links
+
+POST
+/api/Reviews
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "translationId": 2147483647,
+  "reviewerAssignmentId": 2147483647,
+  "reviewedText": "string",
+  "changesMade": "string",
+  "qualityScore": 10,
+  "comments": "string",
+  "status": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "reviewId": 0,
+    "translationId": 0,
+    "originalText": "string",
+    "translatedText": "string",
+    "reviewerAssignmentId": 0,
+    "reviewerName": "string",
+    "reviewedText": "string",
+    "changesMade": "string",
+    "qualityScore": 0,
+    "comments": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.434Z",
+    "updatedAt": "2025-11-25T00:47:41.434Z",
+    "approvals": [
+      {
+        "approvalId": 0,
+        "finalText": "string",
+        "decision": "string",
+        "supervisorName": "string",
+        "approvedAt": "2025-11-25T00:47:41.434Z"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.434Z"
+}
+No links
+
+GET
+/api/Reviews/pending
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "reviewId": 0,
+      "translationId": 0,
+      "originalText": "string",
+      "translatedText": "string",
+      "reviewerAssignmentId": 0,
+      "reviewerName": "string",
+      "reviewedText": "string",
+      "changesMade": "string",
+      "qualityScore": 0,
+      "comments": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.446Z",
+      "updatedAt": "2025-11-25T00:47:41.446Z",
+      "approvals": [
+        {
+          "approvalId": 0,
+          "finalText": "string",
+          "decision": "string",
+          "supervisorName": "string",
+          "approvedAt": "2025-11-25T00:47:41.446Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.446Z"
+}
+No links
+
+GET
+/api/Reviews/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "reviewId": 0,
+    "translationId": 0,
+    "originalText": "string",
+    "translatedText": "string",
+    "reviewerAssignmentId": 0,
+    "reviewerName": "string",
+    "reviewedText": "string",
+    "changesMade": "string",
+    "qualityScore": 0,
+    "comments": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.463Z",
+    "updatedAt": "2025-11-25T00:47:41.463Z",
+    "approvals": [
+      {
+        "approvalId": 0,
+        "finalText": "string",
+        "decision": "string",
+        "supervisorName": "string",
+        "approvedAt": "2025-11-25T00:47:41.463Z"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.463Z"
+}
+No links
+
+PUT
+/api/Reviews/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "reviewedText": "string",
+  "changesMade": "string",
+  "qualityScore": 0,
+  "comments": "string",
+  "status": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "reviewId": 0,
+    "translationId": 0,
+    "originalText": "string",
+    "translatedText": "string",
+    "reviewerAssignmentId": 0,
+    "reviewerName": "string",
+    "reviewedText": "string",
+    "changesMade": "string",
+    "qualityScore": 0,
+    "comments": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.494Z",
+    "updatedAt": "2025-11-25T00:47:41.494Z",
+    "approvals": [
+      {
+        "approvalId": 0,
+        "finalText": "string",
+        "decision": "string",
+        "supervisorName": "string",
+        "approvedAt": "2025-11-25T00:47:41.494Z"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.494Z"
+}
+No links
+
+DELETE
+/api/Reviews/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.508Z"
+}
+No links
+
+GET
+/api/Reviews/translation/{translationId}
+
+Parameters
+Try it out
+Name	Description
+translationId *
+integer($int32)
+(path)
+translationId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "reviewId": 0,
+      "translationId": 0,
+      "originalText": "string",
+      "translatedText": "string",
+      "reviewerAssignmentId": 0,
+      "reviewerName": "string",
+      "reviewedText": "string",
+      "changesMade": "string",
+      "qualityScore": 0,
+      "comments": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.520Z",
+      "updatedAt": "2025-11-25T00:47:41.520Z",
+      "approvals": [
+        {
+          "approvalId": 0,
+          "finalText": "string",
+          "decision": "string",
+          "supervisorName": "string",
+          "approvedAt": "2025-11-25T00:47:41.520Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.520Z"
+}
+No links
+
+GET
+/api/Reviews/reviewer/{reviewerId}
+
+Parameters
+Try it out
+Name	Description
+reviewerId *
+integer($int32)
+(path)
+reviewerId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "reviewId": 0,
+      "translationId": 0,
+      "originalText": "string",
+      "translatedText": "string",
+      "reviewerAssignmentId": 0,
+      "reviewerName": "string",
+      "reviewedText": "string",
+      "changesMade": "string",
+      "qualityScore": 0,
+      "comments": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.537Z",
+      "updatedAt": "2025-11-25T00:47:41.537Z",
+      "approvals": [
+        {
+          "approvalId": 0,
+          "finalText": "string",
+          "decision": "string",
+          "supervisorName": "string",
+          "approvedAt": "2025-11-25T00:47:41.537Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.537Z"
+}
+No links
+
+PATCH
+/api/Reviews/{id}/submit
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.553Z"
+}
+No links
+Statistics
+
+
+GET
+/api/Statistics/dashboard
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "totalProjects": 0,
+    "activeProjects": 0,
+    "completedProjects": 0,
+    "totalUsers": 0,
+    "activeUsers": 0,
+    "totalTranslations": 0,
+    "pendingTranslations": 0,
+    "completedTranslations": 0,
+    "totalWordsTranslated": 0,
+    "averageQualityScore": 0,
+    "recentProjects": [
+      {
+        "projectId": 0,
+        "projectName": "string",
+        "progressPercentage": 0,
+        "status": "string",
+        "deadline": "2025-11-25T00:47:41.561Z"
+      }
+    ],
+    "languageStats": [
+      {
+        "languageName": "string",
+        "projectCount": 0,
+        "wordCount": 0,
+        "averageQuality": 0
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.561Z"
+}
+No links
+
+GET
+/api/Statistics/dashboard/user/{userId}
+
+Parameters
+Try it out
+Name	Description
+userId *
+integer($int32)
+(path)
+userId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "totalProjects": 0,
+    "activeProjects": 0,
+    "completedProjects": 0,
+    "totalUsers": 0,
+    "activeUsers": 0,
+    "totalTranslations": 0,
+    "pendingTranslations": 0,
+    "completedTranslations": 0,
+    "totalWordsTranslated": 0,
+    "averageQualityScore": 0,
+    "recentProjects": [
+      {
+        "projectId": 0,
+        "projectName": "string",
+        "progressPercentage": 0,
+        "status": "string",
+        "deadline": "2025-11-25T00:47:41.593Z"
+      }
+    ],
+    "languageStats": [
+      {
+        "languageName": "string",
+        "projectCount": 0,
+        "wordCount": 0,
+        "averageQuality": 0
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.593Z"
+}
+No links
+
+GET
+/api/Statistics/projects/progress
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "projectId": 0,
+      "projectName": "string",
+      "progressPercentage": 0,
+      "status": "string",
+      "deadline": "2025-11-25T00:47:41.605Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.605Z"
+}
+No links
+
+GET
+/api/Statistics/languages
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "languageName": "string",
+      "projectCount": 0,
+      "wordCount": 0,
+      "averageQuality": 0
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.615Z"
+}
+No links
+
+GET
+/api/Statistics/users/performance
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "userId": 0,
+      "userName": "string",
+      "userType": "string",
+      "completedProjects": 0,
+      "completedTranslations": 0,
+      "completedReviews": 0,
+      "averageQualityScore": 0,
+      "totalWordsTranslated": 0,
+      "lastActivity": "2025-11-25T00:47:41.624Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.624Z"
+}
+No links
+Test
+
+
+GET
+/api/Test/connection
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+No links
+Translations
+
+
+POST
+/api/Translations
+
+Parameters
+Cancel
+Reset
+No parameters
+
+Request body
+
+application/json
+{
+  "paragraphId": 1,
+  "assignmentId": 25,
+  "translatedText": "Programming is the language of creativity in the digital age, giving you the ability to build your own worlds and solve real-world problems.",
+  "status": "string"
+}
+Execute
+Clear
+Responses
+Curl
+
+curl -X 'POST' \
+  'http://localhost:5296/api/Translations' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "paragraphId": 1,
+  "assignmentId": 25,
+  "translatedText": "Programming is the language of creativity in the digital age, giving you the ability to build your own worlds and solve real-world problems.",
+  "status": "string"
+}'
+Request URL
+http://localhost:5296/api/Translations
+Server response
+Code	Details
+200	
+Response body
+Download
+{
+  "success": true,
+  "message": "تم إنشاء الترجمة بنجاح",
+  "data": {
+    "translationId": 1,
+    "paragraphId": 1,
+    "originalText": "إنها فن وعلم تصميم الحلول",
+    "assignmentId": 25,
+    "translatorName": "محمد عبدالروؤف",
+    "targetLanguageName": "English",
+    "translatedText": "Programming is the language of creativity in the digital age, giving you the ability to build your own worlds and solve real-world problems.",
+    "status": "string",
+    "createdAt": "2025-11-24T23:54:49.5458124Z",
+    "updatedAt": null,
+    "draftCount": 1,
+    "finalWordCount": 23,
+    "reviews": []
+  },
+  "errors": null,
+  "timestamp": "2025-11-24T23:54:51.8314015Z"
+}
+Response headers
+ access-control-allow-credentials: true 
+ access-control-allow-origin: http://localhost:5296 
+ content-type: application/json; charset=utf-8 
+ date: Mon,24 Nov 2025 23:54:51 GMT 
+ server: Kestrel 
+ transfer-encoding: chunked 
+ vary: Origin 
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "translationId": 0,
+    "paragraphId": 0,
+    "originalText": "string",
+    "assignmentId": 0,
+    "translatorName": "string",
+    "targetLanguageName": "string",
+    "translatedText": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.661Z",
+    "updatedAt": "2025-11-25T00:47:41.661Z",
+    "draftCount": 0,
+    "finalWordCount": 0,
+    "reviews": [
+      {
+        "reviewId": 0,
+        "reviewedText": "string",
+        "qualityScore": 0,
+        "status": "string",
+        "reviewerName": "string",
+        "createdAt": "2025-11-25T00:47:41.661Z"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.662Z"
+}
+No links
+
+GET
+/api/Translations/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "translationId": 0,
+    "paragraphId": 0,
+    "originalText": "string",
+    "assignmentId": 0,
+    "translatorName": "string",
+    "targetLanguageName": "string",
+    "translatedText": "string",
+    "status": "string",
+    "createdAt": "2025-11-25T00:47:41.679Z",
+    "updatedAt": "2025-11-25T00:47:41.679Z",
+    "draftCount": 0,
+    "finalWordCount": 0,
+    "reviews": [
+      {
+        "reviewId": 0,
+        "reviewedText": "string",
+        "qualityScore": 0,
+        "status": "string",
+        "reviewerName": "string",
+        "createdAt": "2025-11-25T00:47:41.679Z"
+      }
+    ]
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.679Z"
+}
+No links
+
+PUT
+/api/Translations/{id}
+
+
+DELETE
+/api/Translations/{id}
+
+
+GET
+/api/Translations/assignment/{assignmentId}
+
+Parameters
+Try it out
+Name	Description
+assignmentId *
+integer($int32)
+(path)
+assignmentId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "translationId": 0,
+      "paragraphId": 0,
+      "originalText": "string",
+      "assignmentId": 0,
+      "translatorName": "string",
+      "targetLanguageName": "string",
+      "translatedText": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.698Z",
+      "updatedAt": "2025-11-25T00:47:41.698Z",
+      "draftCount": 0,
+      "finalWordCount": 0,
+      "reviews": [
+        {
+          "reviewId": 0,
+          "reviewedText": "string",
+          "qualityScore": 0,
+          "status": "string",
+          "reviewerName": "string",
+          "createdAt": "2025-11-25T00:47:41.699Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.699Z"
+}
+No links
+
+GET
+/api/Translations/paragraph/{paragraphId}
+
+Parameters
+Try it out
+Name	Description
+paragraphId *
+integer($int32)
+(path)
+paragraphId
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "translationId": 0,
+      "paragraphId": 0,
+      "originalText": "string",
+      "assignmentId": 0,
+      "translatorName": "string",
+      "targetLanguageName": "string",
+      "translatedText": "string",
+      "status": "string",
+      "createdAt": "2025-11-25T00:47:41.716Z",
+      "updatedAt": "2025-11-25T00:47:41.716Z",
+      "draftCount": 0,
+      "finalWordCount": 0,
+      "reviews": [
+        {
+          "reviewId": 0,
+          "reviewedText": "string",
+          "qualityScore": 0,
+          "status": "string",
+          "reviewerName": "string",
+          "createdAt": "2025-11-25T00:47:41.716Z"
+        }
+      ]
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.716Z"
+}
+No links
+
+PATCH
+/api/Translations/{id}/submit
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.732Z"
+}
+No links
+
+PATCH
+/api/Translations/{id}/draft
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+"string"
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.759Z"
+}
+No links
+Users
+
+
+POST
+/api/Users/register
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "username": "string",
+  "email": "user@example.com",
+  "password": "string",
+  "firstName": "string",
+  "lastName": "string",
+  "userType": "string",
+  "phoneNumber": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "userId": 0,
+    "username": "string",
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string",
+    "fullName": "string",
+    "userType": "string",
+    "phoneNumber": "string",
+    "profileImage": "string",
+    "isActive": true,
+    "createdAt": "2025-11-25T00:47:41.781Z",
+    "lastLogin": "2025-11-25T00:47:41.781Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.781Z"
+}
+No links
+
+POST
+/api/Users/login
+
+Parameters
+Try it out
+No parameters
+
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "username": "string",
+  "password": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "userId": 0,
+    "username": "string",
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string",
+    "fullName": "string",
+    "userType": "string",
+    "phoneNumber": "string",
+    "profileImage": "string",
+    "isActive": true,
+    "createdAt": "2025-11-25T00:47:41.803Z",
+    "lastLogin": "2025-11-25T00:47:41.803Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.803Z"
+}
+No links
+
+GET
+/api/Users
+
+Parameters
+Try it out
+No parameters
+
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "userId": 0,
+      "username": "string",
+      "email": "string",
+      "firstName": "string",
+      "lastName": "string",
+      "fullName": "string",
+      "userType": "string",
+      "phoneNumber": "string",
+      "profileImage": "string",
+      "isActive": true,
+      "createdAt": "2025-11-25T00:47:41.812Z",
+      "lastLogin": "2025-11-25T00:47:41.812Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.812Z"
+}
+No links
+
+GET
+/api/Users/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "userId": 0,
+    "username": "string",
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string",
+    "fullName": "string",
+    "userType": "string",
+    "phoneNumber": "string",
+    "profileImage": "string",
+    "isActive": true,
+    "createdAt": "2025-11-25T00:47:41.827Z",
+    "lastLogin": "2025-11-25T00:47:41.827Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.827Z"
+}
+No links
+
+PUT
+/api/Users/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "firstName": "string",
+  "lastName": "string",
+  "phoneNumber": "string",
+  "profileImage": "string",
+  "isActive": true
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": {
+    "userId": 0,
+    "username": "string",
+    "email": "string",
+    "firstName": "string",
+    "lastName": "string",
+    "fullName": "string",
+    "userType": "string",
+    "phoneNumber": "string",
+    "profileImage": "string",
+    "isActive": true,
+    "createdAt": "2025-11-25T00:47:41.849Z",
+    "lastLogin": "2025-11-25T00:47:41.849Z"
+  },
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.849Z"
+}
+No links
+
+DELETE
+/api/Users/{id}
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.861Z"
+}
+No links
+
+GET
+/api/Users/type/{userType}
+
+Parameters
+Try it out
+Name	Description
+userType *
+string
+(path)
+userType
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": [
+    {
+      "userId": 0,
+      "username": "string",
+      "email": "string",
+      "firstName": "string",
+      "lastName": "string",
+      "fullName": "string",
+      "userType": "string",
+      "phoneNumber": "string",
+      "profileImage": "string",
+      "isActive": true,
+      "createdAt": "2025-11-25T00:47:41.872Z",
+      "lastLogin": "2025-11-25T00:47:41.872Z"
+    }
+  ],
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.872Z"
+}
+No links
+
+PATCH
+/api/Users/{id}/activate
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.884Z"
+}
+No links
+
+PATCH
+/api/Users/{id}/deactivate
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.894Z"
+}
+No links
+
+POST
+/api/Users/{id}/change-password
+
+Parameters
+Try it out
+Name	Description
+id *
+integer($int32)
+(path)
+id
+Request body
+
+application/json
+Example Value
+Schema
+{
+  "currentPassword": "string",
+  "newPassword": "string",
+  "confirmPassword": "string"
+}
+Responses
+Code	Description	Links
+200	
+OK
+
+Media type
+
+text/plain
+Controls Accept header.
+Example Value
+Schema
+{
+  "success": true,
+  "message": "string",
+  "data": true,
+  "errors": [
+    "string"
+  ],
+  "timestamp": "2025-11-25T00:47:41.914Z"
+}
+No links
+
+Schemas
+ApprovalInfoDto{
+approvalId	integer($int32)
+finalText	string
+nullable: true
+decision	string
+nullable: true
+supervisorName	string
+nullable: true
+approvedAt	string($date-time)
+}
+ApprovalResponseDto{
+approvalId	integer($int32)
+reviewId	integer($int32)
+supervisorAssignmentId	integer($int32)
+supervisorName	string
+nullable: true
+finalText	string
+nullable: true
+selectedVersion	string
+nullable: true
+decision	string
+nullable: true
+comments	string
+nullable: true
+approvedAt	string($date-time)
+projectName	string
+nullable: true
+paragraphText	string
+nullable: true
+}
+ApprovalResponseDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	ApprovalResponseDto{
+approvalId	integer($int32)
+reviewId	integer($int32)
+supervisorAssignmentId	integer($int32)
+supervisorName	string
+nullable: true
+finalText	string
+nullable: true
+selectedVersion	string
+nullable: true
+decision	string
+nullable: true
+comments	string
+nullable: true
+approvedAt	string($date-time)
+projectName	string
+nullable: true
+paragraphText	string
+nullable: true
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+ApprovalResponseDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+ApprovalResponseDto{
+approvalId	integer($int32)
+reviewId	integer($int32)
+supervisorAssignmentId	integer($int32)
+supervisorName	string
+nullable: true
+finalText	string
+nullable: true
+selectedVersion	string
+nullable: true
+decision	string
+nullable: true
+comments	string
+nullable: true
+approvedAt	string($date-time)
+projectName	string
+nullable: true
+paragraphText	string
+nullable: true
+}]
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+AssignmentResponseDto{
+assignmentId	integer($int32)
+projectId	integer($int32)
+projectName	string
+nullable: true
+userId	integer($int32)
+userName	string
+nullable: true
+userEmail	string
+nullable: true
+role	string
+nullable: true
+targetLanguageId	integer($int32)
+targetLanguageName	string
+nullable: true
+targetLanguageCode	string
+nullable: true
+status	string
+nullable: true
+assignedAt	string($date-time)
+deadline	string($date-time)
+nullable: true
+completedAt	string($date-time)
+nullable: true
+isOverdue	boolean
+readOnly: true
+translationCount	integer($int32)
+reviewCount	integer($int32)
+}
+AssignmentResponseDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	AssignmentResponseDto{
+assignmentId	integer($int32)
+projectId	integer($int32)
+projectName	string
+nullable: true
+userId	integer($int32)
+userName	string
+nullable: true
+userEmail	string
+nullable: true
+role	string
+nullable: true
+targetLanguageId	integer($int32)
+targetLanguageName	string
+nullable: true
+targetLanguageCode	string
+nullable: true
+status	string
+nullable: true
+assignedAt	string($date-time)
+deadline	string($date-time)
+nullable: true
+completedAt	string($date-time)
+nullable: true
+isOverdue	boolean
+readOnly: true
+translationCount	integer($int32)
+reviewCount	integer($int32)
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+AssignmentResponseDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+AssignmentResponseDto{
+assignmentId	integer($int32)
+projectId	integer($int32)
+projectName	string
+nullable: true
+userId	integer($int32)
+userName	string
+nullable: true
+userEmail	string
+nullable: true
+role	string
+nullable: true
+targetLanguageId	integer($int32)
+targetLanguageName	string
+nullable: true
+targetLanguageCode	string
+nullable: true
+status	string
+nullable: true
+assignedAt	string($date-time)
+deadline	string($date-time)
+nullable: true
+completedAt	string($date-time)
+nullable: true
+isOverdue	boolean
+readOnly: true
+translationCount	integer($int32)
+reviewCount	integer($int32)
+}]
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+AutoSplitRequest{
+text	string
+nullable: true
+}
+BooleanApiResponse{
+success	boolean
+message	string
+nullable: true
+data	boolean
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+ChangePasswordDto{
+currentPassword*	string
+minLength: 1
+newPassword*	string
+minLength: 6
+confirmPassword*	string
+minLength: 1
+}
+CreateApprovalDto{
+reviewId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+supervisorAssignmentId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+finalText*	string
+minLength: 1
+selectedVersion*	string
+minLength: 1
+decision*	string
+minLength: 1
+comments	string
+nullable: true
+}
+CreateAssignmentDto{
+projectId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+userId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+role*	string
+minLength: 1
+targetLanguageId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+deadline	string($date-time)
+nullable: true
+}
+CreateLanguageDto{
+languageName*	string
+maxLength: 50
+minLength: 0
+languageCode*	string
+maxLength: 10
+minLength: 0
+textDirection*	string
+minLength: 1
+}
+CreateNotificationDto{
+userId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+title*	string
+maxLength: 100
+minLength: 0
+message*	string
+minLength: 1
+relatedType	string
+nullable: true
+relatedId	integer($int32)
+nullable: true
+}
+CreateParagraphDto{
+projectId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+originalText*	string
+minLength: 1
+paragraphType	string
+nullable: true
+position	integer($int32)
+wordCount	integer($int32)
+}
+CreateProjectDto{
+projectName*	string
+maxLength: 255
+minLength: 0
+description	string
+nullable: true
+sourceLanguageId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+createdBy*	integer($int32)
+maximum: 2147483647
+minimum: 1
+targetLanguageIds	[
+nullable: true
+integer($int32)]
+}
+CreateReviewDto{
+translationId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+reviewerAssignmentId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+reviewedText*	string
+minLength: 1
+changesMade	string
+nullable: true
+qualityScore	integer($int32)
+maximum: 10
+minimum: 1
+nullable: true
+comments	string
+nullable: true
+status	string
+nullable: true
+}
+CreateTranslationDto{
+paragraphId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+assignmentId*	integer($int32)
+maximum: 2147483647
+minimum: 1
+translatedText*	string
+minLength: 1
+status	string
+nullable: true
+}
+CreateUserDto{
+username*	string
+minLength: 1
+email*	string($email)
+minLength: 1
+password*	string
+minLength: 1
+firstName*	string
+minLength: 1
+lastName*	string
+minLength: 1
+userType*	string
+minLength: 1
+phoneNumber	string
+nullable: true
+}
+DashboardStatsDto{
+totalProjects	integer($int32)
+activeProjects	integer($int32)
+completedProjects	integer($int32)
+totalUsers	integer($int32)
+activeUsers	integer($int32)
+totalTranslations	integer($int32)
+pendingTranslations	integer($int32)
+completedTranslations	integer($int32)
+totalWordsTranslated	integer($int32)
+averageQualityScore	number($double)
+recentProjects	[
+nullable: true
+ProjectProgressDto{
+projectId	integer($int32)
+projectName	string
+nullable: true
+progressPercentage	number($double)
+status	string
+nullable: true
+deadline	string($date-time)
+}]
+languageStats	[
+nullable: true
+LanguageStatsDto{
+languageName	string
+nullable: true
+projectCount	integer($int32)
+wordCount	integer($int32)
+averageQuality	number($double)
+}]
+}
+DashboardStatsDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	DashboardStatsDto{
+totalProjects	integer($int32)
+activeProjects	integer($int32)
+completedProjects	integer($int32)
+totalUsers	integer($int32)
+activeUsers	integer($int32)
+totalTranslations	integer($int32)
+pendingTranslations	integer($int32)
+completedTranslations	integer($int32)
+totalWordsTranslated	integer($int32)
+averageQualityScore	number($double)
+recentProjects	[
+nullable: true
+ProjectProgressDto{
+projectId	integer($int32)
+projectName	string
+nullable: true
+progressPercentage	number($double)
+status	string
+nullable: true
+deadline	string($date-time)
+}]
+languageStats	[
+nullable: true
+LanguageStatsDto{
+languageName	string
+nullable: true
+projectCount	integer($int32)
+wordCount	integer($int32)
+averageQuality	number($double)
+}]
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+LanguageInfoDto{
+languageId	integer($int32)
+languageName	string
+nullable: true
+languageCode	string
+nullable: true
+textDirection	string
+nullable: true
+}
+LanguageResponseDto{
+languageId	integer($int32)
+languageName	string
+nullable: true
+languageCode	string
+nullable: true
+textDirection	string
+nullable: true
+isActive	boolean
+projectCount	integer($int32)
+}
+LanguageResponseDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	LanguageResponseDto{
+languageId	integer($int32)
+languageName	string
+nullable: true
+languageCode	string
+nullable: true
+textDirection	string
+nullable: true
+isActive	boolean
+projectCount	integer($int32)
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+LanguageResponseDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+LanguageResponseDto{
+languageId	integer($int32)
+languageName	string
+nullable: true
+languageCode	string
+nullable: true
+textDirection	string
+nullable: true
+isActive	boolean
+projectCount	integer($int32)
+}]
+errors	[
+nullable: true
+[...]]
+timestamp	string($date-time)
+}
+LanguageStatsDto{
+languageName	string
+nullable: true
+projectCount	integer($int32)
+wordCount	integer($int32)
+averageQuality	number($double)
+}
+LanguageStatsDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+LanguageStatsDto{
+languageName	string
+nullable: true
+projectCount	integer($int32)
+wordCount	integer($int32)
+averageQuality	number($double)
+}]
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+LoginDto{
+username*	string
+minLength: 1
+password*	string
+minLength: 1
+}
+NotificationResponseDto{
+notificationId	integer($int32)
+userId	integer($int32)
+title	string
+nullable: true
+message	string
+nullable: true
+relatedType	string
+nullable: true
+relatedId	integer($int32)
+nullable: true
+isRead	boolean
+createdAt	string($date-time)
+nullable: true
+}
+NotificationResponseDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	NotificationResponseDto{
+notificationId	integer($int32)
+userId	integer($int32)
+title	string
+nullable: true
+message	string
+nullable: true
+relatedType	string
+nullable: true
+relatedId	integer($int32)
+nullable: true
+isRead	boolean
+createdAt	string($date-time)
+nullable: true
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+NotificationResponseDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+NotificationResponseDto{
+notificationId	integer($int32)
+userId	integer($int32)
+title	string
+nullable: true
+message	string
+nullable: true
+relatedType	string
+nullable: true
+relatedId	integer($int32)
+nullable: true
+isRead	boolean
+createdAt	string($date-time)
+nullable: true
+}]
+errors	[
+nullable: true
+[...]]
+timestamp	string($date-time)
+}
+ParagraphResponseDto{
+paragraphId	integer($int32)
+projectId	integer($int32)
+projectName	string
+nullable: true
+originalText	string
+nullable: true
+paragraphType	string
+nullable: true
+position	integer($int32)
+wordCount	integer($int32)
+createdAt	string($date-time)
+translations	[
+nullable: true
+TranslationInfoDto{
+translationId	integer($int32)
+translatedText	string
+nullable: true
+status	string
+nullable: true
+translatorName	string
+nullable: true
+createdAt	string($date-time)
+targetLanguageName	string
+nullable: true
+}]
+}
+ParagraphResponseDtoApiResponse{
+success	boolean
+message	string
+nullable: true
+data	ParagraphResponseDto{
+paragraphId	integer($int32)
+projectId	integer($int32)
+projectName	string
+nullable: true
+originalText	string
+nullable: true
+paragraphType	string
+nullable: true
+position	integer($int32)
+wordCount	integer($int32)
+createdAt	string($date-time)
+translations	[
+nullable: true
+TranslationInfoDto{
+translationId	integer($int32)
+translatedText	string
+nullable: true
+status	string
+nullable: true
+translatorName	string
+nullable: true
+createdAt	string($date-time)
+targetLanguageName	string
+nullable: true
+}]
+}
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+ParagraphResponseDtoListApiResponse{
+success	boolean
+message	string
+nullable: true
+data	[
+nullable: true
+ParagraphResponseDto{
+paragraphId	[...]
+projectId	[...]
+projectName	[...]
+originalText	[...]
+paragraphType	[...]
+position	[...]
+wordCount	[...]
+createdAt	[...]
+translations	[...]
+}]
+errors	[
+nullable: true
+string]
+timestamp	string($date-time)
+}
+ProjectProgressDto{
+projectId	[...]
+projectName	[...]
+progressPercentage	[...]
+status	[...]
+deadline	[...]
+}
+ProjectProgressDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
+ProjectResponseDto{
+projectId	[...]
+projectName	[...]
+description	[...]
+sourceLanguageId	[...]
+sourceLanguageName	[...]
+sourceLanguageCode	[...]
+createdBy	[...]
+creatorName	[...]
+status	[...]
+createdAt	[...]
+updatedAt	[...]
+totalParagraphs	[...]
+wordCount	[...]
+targetLanguages	[...]
+}
+ProjectResponseDtoApiResponse{
+success	[...]
+message	[...]
+data	ProjectResponseDto{...}
+errors	[...]
+timestamp	[...]
+}
+ProjectResponseDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
+ProjectStatsDto{
+projectId	[...]
+projectName	[...]
+totalParagraphs	[...]
+translatedParagraphs	[...]
+reviewedParagraphs	[...]
+approvedParagraphs	[...]
+pendingAssignments	[...]
+completedAssignments	[...]
+progressPercentage	[...]
+}
+ProjectStatsDtoApiResponse{
+success	[...]
+message	[...]
+data	ProjectStatsDto{...}
+errors	[...]
+timestamp	[...]
+}
+ReviewInfoDto{
+reviewId	[...]
+reviewedText	[...]
+qualityScore	[...]
+status	[...]
+reviewerName	[...]
+createdAt	[...]
+}
+ReviewResponseDto{
+reviewId	[...]
+translationId	[...]
+originalText	[...]
+translatedText	[...]
+reviewerAssignmentId	[...]
+reviewerName	[...]
+reviewedText	[...]
+changesMade	[...]
+qualityScore	[...]
+comments	[...]
+status	[...]
+createdAt	[...]
+updatedAt	[...]
+approvals	[...]
+}
+ReviewResponseDtoApiResponse{
+success	[...]
+message	[...]
+data	ReviewResponseDto{...}
+errors	[...]
+timestamp	[...]
+}
+ReviewResponseDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
+TranslationInfoDto{
+translationId	[...]
+translatedText	[...]
+status	[...]
+translatorName	[...]
+createdAt	[...]
+targetLanguageName	[...]
+}
+TranslationResponseDto{
+translationId	[...]
+paragraphId	[...]
+originalText	[...]
+assignmentId	[...]
+translatorName	[...]
+targetLanguageName	[...]
+translatedText	[...]
+status	[...]
+createdAt	[...]
+updatedAt	[...]
+draftCount	[...]
+finalWordCount	[...]
+reviews	[...]
+}
+TranslationResponseDtoApiResponse{
+success	[...]
+message	[...]
+data	TranslationResponseDto{...}
+errors	[...]
+timestamp	[...]
+}
+TranslationResponseDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
+UpdateAssignmentDto{
+status	[...]
+deadline	[...]
+completedAt	[...]
+}
+UpdateLanguageDto{
+languageName	[...]
+languageCode	[...]
+textDirection	[...]
+isActive	[...]
+}
+UpdateParagraphDto{
+originalText	string
+nullable: true
+paragraphType	string
+nullable: true
+position	integer($int32)
+nullable: true
+wordCount	integer($int32)
+nullable: true
+}
+UpdateProjectDto{
+projectName	[...]
+description	[...]
+status	[...]
+}
+UpdateReviewDto{
+reviewedText	[...]
+changesMade	[...]
+qualityScore	[...]
+comments	[...]
+status	[...]
+}
+UpdateTranslationDto{
+translatedText	[...]
+status	[...]
+finalWordCount	[...]
+}
+UpdateUserDto{
+firstName	[...]
+lastName	[...]
+phoneNumber	[...]
+profileImage	[...]
+isActive	[...]
+}
+UserPerformanceDto{
+userId	[...]
+userName	[...]
+userType	[...]
+completedProjects	[...]
+completedTranslations	[...]
+completedReviews	[...]
+averageQualityScore	[...]
+totalWordsTranslated	[...]
+lastActivity	[...]
+}
+UserPerformanceDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
+UserResponseDto{
+userId	[...]
+username	[...]
+email	[...]
+firstName	[...]
+lastName	[...]
+fullName	[...]
+userType	[...]
+phoneNumber	[...]
+profileImage	[...]
+isActive	[...]
+createdAt	[...]
+lastLogin	[...]
+}
+UserResponseDtoApiResponse{
+success	[...]
+message	[...]
+data	UserResponseDto{...}
+errors	[...]
+timestamp	[...]
+}
+UserResponseDtoListApiResponse{
+success	[...]
+message	[...]
+data	[...]
+errors	[...]
+timestamp	[...]
+}
