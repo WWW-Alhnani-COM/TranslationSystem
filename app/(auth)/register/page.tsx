@@ -32,8 +32,8 @@ export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("أحمد");
-  const [lastName, setLastName] = useState("الشرابي");
+  const [firstName, setFirstName] = useState("محمد");
+  const [lastName, setLastName] = useState("الحناني");
   const [phoneNumber, setPhoneNumber] = useState("0501234567");
   const [userType, setUserType] = useState("DataEntry");
   const [isLoading, setIsLoading] = useState(false);
