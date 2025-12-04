@@ -12,9 +12,8 @@ import { apiClient } from "@/lib/api-client";
 import { toast } from "@/components/ui/use-toast";
 import { useAuth } from "@/context/AuthContext";
 import { CheckCircle, AlertTriangle, Clock, BookOpen, Edit, Save } from "lucide-react";
-import { Project, Assignment, ParagraphResponseDto } from "@/types"; // استيراد الأنواع
+import { Project, Assignment, ParagraphResponseDto } from "@/types";
 
-// تعريف الأنواع المحلية (يمكنك نقلها إلى types.ts لاحقًا)
 interface CreateTranslationDto {
   paragraphId: number;
   assignmentId: number;
@@ -32,17 +31,30 @@ export default function TranslatorProjectDetailsPage() {
   const { user } = useAuth();
 
   const [project, setProject] = useState<Project | null>(null);
-  const [paragraphs, setParagraphs] = useState<ParagraphResponseDto[]>([]); // استخدام النوع الجديد
+  const [paragraphs, setParagraphs] = useState<ParagraphResponseDto[]>([]);
   const [assignment, setAssignment] = useState<Assignment | null>(null);
   const [loading, setLoading] = useState(true);
-  const [editingTranslation, setEditingTranslation] = useState<{ [key: number]: string }>({}); // key: paragraphId
-  const [saving, setSaving] = useState<{ [key: number]: boolean }>({}); // key: paragraphId
+  const [editingTranslation, setEditingTranslation] = useState<{ [key: number]: string }>({});
+  const [saving, setSaving] = useState<{ [key: number]: boolean }>({});
+
+  // 🔧 دالة مساعدة لتنسيق التاريخ
+  const formatDate = (dateString?: string): string => {
+    if (!dateString) return 'غير محدد';
+    try {
+      return new Date(dateString).toLocaleDateString('ar-EG');
+    } catch {
+      return 'تاريخ غير صالح';
+    }
+  };
 
   useEffect(() => {
     if (user?.userId && projectId) {
-      fetchProjectDetails();
-      fetchProjectParagraphs();
-      fetchUserAssignment();
+      setLoading(true);
+      Promise.all([
+        fetchProjectDetails(),
+        fetchProjectParagraphs(),
+        fetchUserAssignment()
+      ]).finally(() => setLoading(false));
     }
   }, [user, projectId]);
 
@@ -56,17 +68,12 @@ export default function TranslatorProjectDetailsPage() {
         title: "خطأ",
         description: "فشل في جلب تفاصيل المشروع",
       });
-      router.push('/translator/projects'); // العودة إلى القائمة في حالة الفشل
+      router.push('/translator/projects');
     }
   };
 
   const fetchProjectParagraphs = async () => {
     try {
-      // نحتاج إلى جلب الفقرات المرتبطة بمهام المستخدم في هذا المشروع
-      // نفترض أن API يدعم جلب الفقرات مع الترجمات
-      // نستخدم GET /api/Paragraphs/project/{projectId} ثم نصفّيها
-      // أو نحتاج إلى نقطة نهاية جديدة مثل /api/Translations/assignment/{assignmentId}
-      // ل simplicity، نستخدم GET /api/Paragraphs/project/{projectId}
       const data = await apiClient.get(`Paragraphs/project/${projectId}`);
       setParagraphs(data || []);
     } catch (error) {
@@ -81,11 +88,6 @@ export default function TranslatorProjectDetailsPage() {
   const fetchUserAssignment = async () => {
     if (!user) return;
     try {
-      // نحتاج إلى جلب المهمة المخصصة للمستخدم في هذا المشروع
-      // نفترض أن API يدعم جلب المهام حسب المشروع والمستخدم
-      // نستخدم GET /api/Assignments ونضيف معلمات التصفية
-      // أو نحتاج إلى نقطة نهاية مثل /api/Assignments/user/{userId}/project/{projectId}
-      // ل simplicity، نستخدم GET /api/Assignments/user/{userId} ونبحث
       const userAssignmentsData = await apiClient.get(`Assignments/user/${user.userId}`);
       const userAssignment = userAssignmentsData?.find((a: Assignment) => a.projectId === projectId && a.role === 'Translator');
       setAssignment(userAssignment || null);
@@ -102,7 +104,6 @@ export default function TranslatorProjectDetailsPage() {
     if (!translations || translations.length === 0) {
       return <Badge variant="outline">غير مترجمة</Badge>;
     }
-    // نفترض أن الحالة هي حالة الترجمة الأخيرة
     const lastTranslation = translations[translations.length - 1];
     switch (lastTranslation.status) {
       case "Draft":
@@ -138,7 +139,6 @@ export default function TranslatorProjectDetailsPage() {
     try {
       const existingTranslation = paragraphs.find(p => p.paragraphId === paragraphId)?.translations?.[0];
       if (existingTranslation) {
-        // تحديث الترجمة
         await apiClient.put(`Translations/${existingTranslation.translationId}`, {
           translatedText: translationText
         } as UpdateTranslationDto);
@@ -147,7 +147,6 @@ export default function TranslatorProjectDetailsPage() {
           description: "تم تحديث الترجمة بنجاح",
         });
       } else {
-        // إنشاء ترجمة جديدة
         await apiClient.post("Translations", {
           paragraphId,
           assignmentId: assignment.assignmentId,
@@ -158,8 +157,7 @@ export default function TranslatorProjectDetailsPage() {
           description: "تم إنشاء الترجمة بنجاح",
         });
       }
-      // تحديث القائمة محليًا أو إعادة جلبها
-      fetchProjectParagraphs(); // أو تحديث الكائن مباشرة
+      fetchProjectParagraphs();
     } catch (error) {
       // تم التعامل مع الخطأ داخل apiClient
     } finally {
@@ -225,9 +223,10 @@ export default function TranslatorProjectDetailsPage() {
               <Label>الحالة</Label>
               <p>{project.status}</p>
             </div>
+            {/* 🔧 الحل: استخدام دالة formatDate */}
             <div>
               <Label>الموعد النهائي</Label>
-              <p>{new Date(assignment.deadline).toLocaleDateString('ar-EG')}</p>
+              <p>{formatDate(assignment.deadline)}</p>
             </div>
           </div>
           {project.description && (
@@ -249,7 +248,7 @@ export default function TranslatorProjectDetailsPage() {
           ) : (
             <div className="space-y-6">
               {paragraphs.map(paragraph => {
-                const lastTranslation = paragraph.translations?.[0]; // افتراض وجود ترجمة واحدة فقط نشطة
+                const lastTranslation = paragraph.translations?.[0];
                 const currentText = editingTranslation[paragraph.paragraphId] ?? lastTranslation?.translatedText ?? '';
                 const isSaving = saving[paragraph.paragraphId] ?? false;
 
@@ -315,4 +314,4 @@ export default function TranslatorProjectDetailsPage() {
       </Card>
     </div>
   );
-}
+      }
