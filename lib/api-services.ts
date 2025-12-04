@@ -149,7 +149,7 @@ export const projectService = {
     apiClient.delete(`Projects/${id}`),
   
 getByProject: (projectId: number) =>
-  apiClient.get(`Projects/${projectId}/assignments`),
+  apiClient.get(`Assignments/project/${projectId}`),
 
   getAll: () =>
     apiClient.get('Projects'), // ← هذه هي الإضافة الجديدة
