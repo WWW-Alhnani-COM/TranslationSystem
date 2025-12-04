@@ -48,6 +48,7 @@ export const assignmentService = {
 
   getByProject: (projectId: number) =>
     apiClient.get(`Assignments/project/${projectId}`),
+  
 
   getByRole: (role: string) =>
     apiClient.get(`Assignments/role/${role}`),
@@ -148,8 +149,7 @@ export const projectService = {
   delete: (id: number) =>
     apiClient.delete(`Projects/${id}`),
   
-getByProject: (projectId: number) =>
-  apiClient.get(`Assignments/project/${projectId}`),
+
 
   getAll: () =>
     apiClient.get('Projects'), // ← هذه هي الإضافة الجديدة
