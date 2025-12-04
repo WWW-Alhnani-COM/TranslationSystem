@@ -1,4 +1,4 @@
-// app/supervisor/reviews/pending/page.tsx
+// app/supervisor/reviews/pending/page.tsx - التصحيح الكامل
 "use client";
 
 import { useState, useEffect } from "react";
@@ -19,20 +19,9 @@ export default function SupervisorPendingReviewsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submittingIds, setSubmittingIds] = useState<number[]>([]);
-  const [authLoading, setAuthLoading] = useState(true); // 🔧 أضف هذا
 
-  const { user } = useAuth(); // 🔧 أزل loading من هنا
+  const { user, isLoading: authLoading } = useAuth(); // ✅ هنا تغيير مهم: isLoading وليس loading
   const router = useRouter();
-
-  useEffect(() => {
-    // 🔧 معالجة تحميل المصادقة
-    const checkAuth = async () => {
-      // انتظر لمدة قصيرة للتأكد من تحميل بيانات المستخدم
-      await new Promise(resolve => setTimeout(resolve, 100));
-      setAuthLoading(false);
-    };
-    checkAuth();
-  }, []);
 
   useEffect(() => {
     const fetchPendingReviews = async () => {
@@ -44,9 +33,8 @@ export default function SupervisorPendingReviewsPage() {
 
       try {
         setLoading(true);
-        const data: any[] = await apiClient.get("Reviews/pending"); // 🔧 أصلح اسم المتغير
+        const data: any[] = await apiClient.get("Reviews/pending");
 
-        // ✅ التحقق: عرض فقط المراجعات التي ليس لها موافقات
         const pendingOnly = data.filter(
           (review) => !review.approvals || review.approvals.length === 0
         );
@@ -63,7 +51,29 @@ export default function SupervisorPendingReviewsPage() {
     fetchPendingReviews();
   }, [user, authLoading, router]);
 
-  // === دالة مساعدة: جلب مهمة المشرف المناسبة ===
+  // دالة مساعدة لجلب معرف المشروع واللغة
+  const getReviewIds = (review: ReviewResponseDto): { projectId?: number; languageId?: number } => {
+    // 🔧 استخدام any مؤقتاً لتفادي أخطاء TypeScript
+    const anyReview = review as any;
+    
+    const projectId = 
+      anyReview.projectId ||
+      anyReview.project?.projectId ||
+      anyReview.projectDetails?.id ||
+      anyReview.translation?.projectId ||
+      anyReview.translation?.project?.projectId;
+
+    const languageId = 
+      anyReview.targetLanguageId ||
+      anyReview.languageId ||
+      anyReview.targetLanguage?.languageId ||
+      anyReview.language?.languageId ||
+      anyReview.translation?.targetLanguageId ||
+      anyReview.translation?.targetLanguage?.languageId;
+
+    return { projectId, languageId };
+  };
+
   const getSupervisorAssignmentId = async (
     projectId: number,
     targetLanguageId: number,
@@ -89,15 +99,25 @@ export default function SupervisorPendingReviewsPage() {
     }
   };
 
-  // === معالجة الموافقة ===
   const handleApprove = async (review: ReviewResponseDto) => {
     if (!user) return;
     setSubmittingIds((prev) => [...prev, review.reviewId]);
 
     try {
+      const { projectId, languageId } = getReviewIds(review);
+
+      if (!projectId || !languageId) {
+        toast({
+          variant: "destructive",
+          title: "خطأ",
+          description: "بيانات المشروع أو اللغة غير مكتملة.",
+        });
+        return;
+      }
+
       const assignmentId = await getSupervisorAssignmentId(
-        review.projectId!,
-        review.targetLanguageId!,
+        projectId,
+        languageId,
         user.userId
       );
 
@@ -113,7 +133,7 @@ export default function SupervisorPendingReviewsPage() {
       const approvalData: CreateApprovalDto = {
         reviewId: review.reviewId,
         supervisorAssignmentId: assignmentId,
-        finalText: review.reviewedText || review.translatedText || "",
+        finalText: review.reviewedText || "",
         selectedVersion: "Reviewed",
         decision: "Accepted",
       };
@@ -125,7 +145,6 @@ export default function SupervisorPendingReviewsPage() {
         description: `تمت الموافقة على المراجعة #${review.reviewId}`,
       });
 
-      // إزالة العنصر من القائمة
       setReviews((prev) => prev.filter((r) => r.reviewId !== review.reviewId));
     } catch (err) {
       toast({
@@ -138,15 +157,25 @@ export default function SupervisorPendingReviewsPage() {
     }
   };
 
-  // === معالجة الرفض ===
   const handleReject = async (review: ReviewResponseDto) => {
     if (!user) return;
     setSubmittingIds((prev) => [...prev, review.reviewId]);
 
     try {
+      const { projectId, languageId } = getReviewIds(review);
+
+      if (!projectId || !languageId) {
+        toast({
+          variant: "destructive",
+          title: "خطأ",
+          description: "بيانات المشروع أو اللغة غير مكتملة.",
+        });
+        return;
+      }
+
       const assignmentId = await getSupervisorAssignmentId(
-        review.projectId!,
-        review.targetLanguageId!,
+        projectId,
+        languageId,
         user.userId
       );
 
@@ -162,7 +191,7 @@ export default function SupervisorPendingReviewsPage() {
       const approvalData: CreateApprovalDto = {
         reviewId: review.reviewId,
         supervisorAssignmentId: assignmentId,
-        finalText: review.reviewedText || review.translatedText || "",
+        finalText: review.reviewedText || "",
         selectedVersion: "Original",
         decision: "Rejected",
         comments: "مرفوض من قبل المشرف",
@@ -187,11 +216,25 @@ export default function SupervisorPendingReviewsPage() {
     }
   };
 
-  // === حالات التحميل ===
+  // حالات التحميل
   if (authLoading) {
     return (
       <div className="container mx-auto py-10 flex justify-center items-center">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!user || user.userType !== "Supervisor") {
+    return (
+      <div className="container mx-auto py-10 text-center">
+        <h2 className="text-2xl font-bold text-destructive">غير مصرح</h2>
+        <p className="text-muted-foreground mt-2">
+          يجب أن تكون مشرفاً للوصول إلى هذه الصفحة
+        </p>
+        <Button className="mt-4" onClick={() => router.push("/login")}>
+          العودة إلى تسجيل الدخول
+        </Button>
       </div>
     );
   }
@@ -201,16 +244,39 @@ export default function SupervisorPendingReviewsPage() {
       <div className="container mx-auto py-10 text-center">
         <h2 className="text-2xl font-bold text-destructive">خطأ</h2>
         <p className="text-muted-foreground mt-2">{error}</p>
-        <Button className="mt-4" onClick={() => router.push("/login")}>
-          العودة إلى تسجيل الدخول
+        <Button className="mt-4" onClick={() => window.location.reload()}>
+          إعادة المحاولة
         </Button>
       </div>
     );
   }
 
+  // وظائف مساعدة لعرض البيانات
+  const getProjectName = (review: ReviewResponseDto): string => {
+    const anyReview = review as any;
+    return (
+      anyReview.projectName ||
+      anyReview.project?.projectName ||
+      anyReview.projectDetails?.name ||
+      anyReview.translation?.projectName ||
+      "–"
+    );
+  };
+
+  const getLanguageName = (review: ReviewResponseDto): string => {
+    const anyReview = review as any;
+    return (
+      anyReview.targetLanguageName ||
+      anyReview.languageName ||
+      anyReview.targetLanguage?.languageName ||
+      anyReview.language?.languageName ||
+      anyReview.translation?.targetLanguageName ||
+      "–"
+    );
+  };
+
   return (
     <div className="container mx-auto py-10">
-      {/* === التنقل بين الصفحات === */}
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-3xl font-bold">المراجعات بانتظار الموافقة</h1>
@@ -264,8 +330,10 @@ export default function SupervisorPendingReviewsPage() {
                 <TableBody>
                   {reviews.map((review) => (
                     <TableRow key={review.reviewId}>
-                      <TableCell className="font-medium">{review.projectName || "–"}</TableCell>
-                      <TableCell>{review.targetLanguageName || "–"}</TableCell>
+                      <TableCell className="font-medium">
+                        {getProjectName(review)}
+                      </TableCell>
+                      <TableCell>{getLanguageName(review)}</TableCell>
                       <TableCell className="max-w-xs truncate">
                         {review.originalText?.substring(0, 50) || "–"}
                       </TableCell>
