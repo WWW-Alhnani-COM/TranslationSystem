@@ -112,7 +112,7 @@ export default function ReviewPage({ params }: { params: Promise<{ id: string }>
           loading: false,
         }));
 
-        if (translations.length > 0 && !prev.selectedTranslationId) {
+      if (translations.length > 0 && !state.selectedTranslationId) {
           const firstTranslation = translations[0];
           setState(prevState => ({
             ...prevState,
