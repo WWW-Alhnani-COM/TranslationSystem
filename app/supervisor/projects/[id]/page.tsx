@@ -48,30 +48,29 @@ export default function ProjectDetailsPage() {
   }, [projectId]);
 
   const fetchProjectData = async () => {
-    try {
-      setLoading(true);
-      setError(null);
+  try {
+    setLoading(true);
+    setError(null);
 
-      // جلب بيانات المشروع
-      const projectData = await projectService.getById(projectId);
-      setProject(projectData);
+    // جلب بيانات المشروع
+    const projectData = await projectService.getById(projectId);
+    setProject(projectData);
 
-      // جلب إحصائيات المشروع
-      const statsData = await projectService.getStats(projectId);
-      setProjectStats(statsData);
+    // جلب إحصائيات المشروع
+    const statsData = await projectService.getStats(projectId);
+    setProjectStats(statsData);
 
-      // جلب مهام المشروع
-      const assignmentsData = await projectService.getByProject?.(projectId) || 
-                              await assignmentService.getByProject(projectId);
-      setAssignments(assignmentsData || []);
+    // جلب مهام المشروع (تم التعديل هنا)
+    const assignmentsData = await assignmentService.getByProject(projectId);
+    setAssignments(assignmentsData || []);
 
-    } catch (err: any) {
-      console.error('Error fetching project data:', err);
-      setError(err.message || 'حدث خطأ في تحميل بيانات المشروع');
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err: any) {
+    console.error('Error fetching project data:', err);
+    setError(err.message || 'حدث خطأ في تحميل بيانات المشروع');
+  } finally {
+    setLoading(false);
+  }
+};
 
   const getProjectStatusBadge = (status: string) => {
     const statusConfig: Record<string, { variant: "default" | "secondary" | "destructive" | "outline", label: string, icon: React.ReactNode }> = {
