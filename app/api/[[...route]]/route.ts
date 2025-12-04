@@ -3,42 +3,71 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const API_BASE_URL = 'http://samali1-001-site1.stempurl.com/api';
 
+// تعريف أنواع لـ params
+interface RouteParams {
+  route?: string[];
+}
+
+// GET مع params كـ Promise
 export async function GET(
   request: NextRequest,
-  context: { params: { route: string[] } }
+  { params }: { params: Promise<RouteParams> }
 ) {
-  return handleProxy(request, context.params.route);
+  const resolvedParams = await params;
+  return handleProxy(request, resolvedParams.route || []);
 }
 
+// POST مع params كـ Promise
 export async function POST(
   request: NextRequest,
-  context: { params: { route: string[] } }
+  { params }: { params: Promise<RouteParams> }
 ) {
-  return handleProxy(request, context.params.route);
+  const resolvedParams = await params;
+  return handleProxy(request, resolvedParams.route || []);
 }
 
+// PUT مع params كـ Promise
 export async function PUT(
   request: NextRequest,
-  context: { params: { route: string[] } }
+  { params }: { params: Promise<RouteParams> }
 ) {
-  return handleProxy(request, context.params.route);
+  const resolvedParams = await params;
+  return handleProxy(request, resolvedParams.route || []);
 }
 
+// DELETE مع params كـ Promise
 export async function DELETE(
   request: NextRequest,
-  context: { params: { route: string[] } }
+  { params }: { params: Promise<RouteParams> }
 ) {
-  return handleProxy(request, context.params.route);
+  const resolvedParams = await params;
+  return handleProxy(request, resolvedParams.route || []);
 }
 
+// PATCH مع params كـ Promise
 export async function PATCH(
   request: NextRequest,
-  context: { params: { route: string[] } }
+  { params }: { params: Promise<RouteParams> }
 ) {
-  return handleProxy(request, context.params.route);
+  const resolvedParams = await params;
+  return handleProxy(request, resolvedParams.route || []);
 }
 
-async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
+// OPTIONS لـ CORS preflight
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept',
+      'Access-Control-Max-Age': '86400',
+    },
+  });
+}
+
+// دالة Proxy الرئيسية
+async function handleProxy(request: NextRequest, routeSegments: string[]) {
   const path = routeSegments.join('/');
   const targetUrl = `${API_BASE_URL}/${path}${request.nextUrl.search}`;
   
@@ -48,9 +77,8 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
     // إعداد headers للطلب
     const headers = new Headers();
     
-    // نسخ headers من الطلب الأصلي (باستثناء بعض headers)
+    // نسخ headers من الطلب الأصلي
     request.headers.forEach((value, key) => {
-      // لا ننسخ هذه headers لأنها خاصة بالمتصفح
       if (![
         'host',
         'origin',
@@ -68,7 +96,6 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
       headers.set('Content-Type', 'application/json');
     }
     
-    // إضافة Accept إذا لم يكن موجودًا
     if (!headers.has('Accept')) {
       headers.set('Accept', 'application/json');
     }
@@ -76,11 +103,7 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
     // جلب body إذا كان موجودًا
     let body: any = null;
     if (['POST', 'PUT', 'PATCH'].includes(request.method)) {
-      try {
-        body = await request.text();
-      } catch {
-        body = null;
-      }
+      body = await request.text();
     }
     
     // إجراء الطلب إلى الـ Backend
@@ -88,17 +111,8 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
       method: request.method,
       headers,
       body,
-      // إعادة التوجيه
       redirect: 'follow',
     });
-    
-    // نسخ headers من الاستجابة
-    const responseHeaders = new Headers(response.headers);
-    
-    // إضافة CORS headers للسماح للـ Frontend بالوصول
-    responseHeaders.set('Access-Control-Allow-Origin', '*');
-    responseHeaders.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    responseHeaders.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     
     // الحصول على body من الاستجابة
     let responseBody;
@@ -111,6 +125,14 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
     } else {
       responseBody = await response.blob();
     }
+    
+    // إعداد CORS headers للاستجابة
+    const responseHeaders = new Headers({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Content-Type': contentType || 'application/json',
+    });
     
     return new NextResponse(
       typeof responseBody === 'string' ? responseBody : JSON.stringify(responseBody),
@@ -141,17 +163,4 @@ async function handleProxy(request: NextRequest, routeSegments: string[] = []) {
       }
     );
   }
-}
-
-// معالجة طلبات OPTIONS لـ CORS preflight
-export async function OPTIONS() {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Accept',
-      'Access-Control-Max-Age': '86400', // 24 hours
-    },
-  });
 }
