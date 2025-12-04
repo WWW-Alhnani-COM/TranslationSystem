@@ -1,7 +1,7 @@
 // app/api/[[...route]]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_BASE_URL = 'http://samali1-001-site1.stempurl.com/api';
+const API_BASE_URL = 'https://samali1-001-site1.stempurl.com/api';
 
 // تعريف أنواع لـ params
 interface RouteParams {
