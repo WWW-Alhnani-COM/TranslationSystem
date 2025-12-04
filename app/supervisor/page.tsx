@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { projectService, statisticsService } from "@/lib/api-services";
-import { Project, ProjectStatsDto, DashboardStats } from "@/types";
+import { Project, ProjectStatsDto, DashboardStatsDto } from "@/types";
 import { 
   Folder, 
   CheckCircle, 
