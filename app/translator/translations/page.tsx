@@ -24,6 +24,16 @@ import {
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 
+// 🔧 دالة مساعدة لتنسيق التاريخ
+const formatDate = (dateString?: string): string => {
+  if (!dateString) return 'غير محدد';
+  try {
+    return new Date(dateString).toLocaleDateString('ar-EG');
+  } catch {
+    return 'تاريخ غير صالح';
+  }
+};
+
 export default function TranslationsPage() {
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,7 +53,6 @@ export default function TranslationsPage() {
     if (!user) return;
     try {
       setLoading(true);
-      // استخدام الـ API الصحيح بدون تعقيدات
       const data = await apiClient.get('Assignments/user/' + user.userId);
       setAssignments(data || []);
     } catch (error) {
@@ -190,7 +199,7 @@ export default function TranslationsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAssignments.map((assignment) => {
             // حساب التقدم (ببساطة)
-            let progressPercentage = 50; // قيمة افتراضية
+            let progressPercentage = 50;
             let translatedParagraphs = 0;
             let totalWords = 0;
 
@@ -213,7 +222,8 @@ export default function TranslationsPage() {
                     <div className="flex flex-col items-end">
                       <div className="flex items-center text-sm text-muted-foreground">
                         <Clock className="h-4 w-4 mr-1" />
-                        <span>{new Date(assignment.deadline).toLocaleDateString('ar-EG')}</span>
+                        {/* 🔧 الحل: استخدام دالة formatDate */}
+                        <span>{formatDate(assignment.deadline)}</span>
                       </div>
                       {assignment.isOverdue && (
                         <Badge variant="destructive" className="mt-1">متأخر</Badge>
@@ -269,4 +279,4 @@ export default function TranslationsPage() {
       )}
     </div>
   );
-}
+      }
