@@ -49,7 +49,7 @@ export default function ReviewerDashboard() {
       if (user?.userId) {
         // جلب إحصائيات لوحة التحكم الخاصة بالمستخدم
         const DashboardStatsDto = await apiClient.get(`Statistics/dashboard/user/${user.userId}`);
-        setStats(dashboardStats);
+        setStats(DashboardStatsDto);
 
         // جلب مهام المراجع
         const userAssignments = await apiClient.get(`Assignments/user/${user.userId}`);
