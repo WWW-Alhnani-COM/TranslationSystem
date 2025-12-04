@@ -1,7 +1,7 @@
 // src/lib/api-client.ts
 import { toast } from "@/components/ui/use-toast";
 
-// استخدم Proxy دائماً
+// استخدم Proxy على Vercel
 const API_BASE_URL = '/api';
 
 // دالة للحصول على التوكن
@@ -55,7 +55,7 @@ const handleResponse = async (response: Response) => {
   return await response.text();
 };
 
-// تنفيذ الطلب مع mode خاص
+// تنفيذ الطلب
 const apiRequest = async (
   endpoint: string,
   method: string,
@@ -66,7 +66,7 @@ const apiRequest = async (
     // تنظيف الـ endpoint
     endpoint = endpoint.replace(/^\/+/, '');
     
-    // بناء URL - دائمًا استخدم Proxy
+    // بناء URL
     const url = new URL(`${API_BASE_URL}/${endpoint}`, window.location.origin);
     
     if (params) {
@@ -86,8 +86,7 @@ const apiRequest = async (
         "Accept": "application/json",
         ...(token && { "Authorization": `Bearer ${token}` }),
       },
-      // ⚠️ مهم: لا تستخدم mode: 'cors' هنا
-      // دع الـ Proxy يتعامل مع CORS
+      credentials: 'include', // مهم لـ CORS مع cookies
     };
 
     if (data !== undefined) {
@@ -102,23 +101,10 @@ const apiRequest = async (
     console.error(`API Error [${endpoint}]:`, error);
 
     if (typeof window !== 'undefined') {
-      // عرض رسالة مناسبة
-      let title = "خطأ في الاتصال";
-      let description = error.message || "تعذر الاتصال بالخادم";
-      
-      if (error.message.includes('Mixed Content')) {
-        title = "مشكلة في الاتصال الآمن";
-        description = "جاري تفعيل شهادة SSL. الرجاء المحاولة مرة أخرى خلال 1-2 ساعة.";
-      } else if (error.message.includes('Failed to fetch')) {
-        title = "فشل الاتصال";
-        description = "تعذر الوصول إلى الخادم الخلفي. تأكد من اتصالك بالإنترنت.";
-      }
-      
       toast({
         variant: "destructive",
-        title,
-        description,
-        duration: 10000,
+        title: "خطأ في الاتصال",
+        description: error.message || "تعذر الاتصال بالخادم",
       });
     }
 
