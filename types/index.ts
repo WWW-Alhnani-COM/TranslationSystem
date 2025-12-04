@@ -223,6 +223,7 @@ export interface LanguageInfoDto {
   languageName: string;
   languageCode: string;
   textDirection: string;
+  isActive?: boolean;
 }
 
 export interface TranslationInfoDto {
