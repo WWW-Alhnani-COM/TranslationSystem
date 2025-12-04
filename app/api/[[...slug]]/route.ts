@@ -1,7 +1,7 @@
 // app/api/[[...slug]]/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 
-const API_BASE = 'http://samali1-001-site1.stempurl.com/api';
+const API_BASE = 'https://samali1-001-site1.stempurl.com/api';
 
 export async function GET(
   request: NextRequest,
