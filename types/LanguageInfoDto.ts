@@ -4,4 +4,5 @@ export interface LanguageInfoDto {
   languageName: string;
   languageCode: string;
   textDirection: string; // 'ltr' | 'rtl' على سبيل المثال
+    isActive?: boolean;
 }
