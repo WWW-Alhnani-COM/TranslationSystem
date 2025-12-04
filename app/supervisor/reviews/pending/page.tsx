@@ -353,22 +353,24 @@ export default function SupervisorPendingReviewsPage() {
                       </TableCell>
                       <TableCell className="text-center">
                         <div className="flex justify-center gap-2">
-                          <Button
-                            size="sm"
-                            variant="success"
-                            onClick={() => handleApprove(review)}
-                            disabled={submittingIds.includes(review.reviewId)}
-                          >
-                            ✅
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="destructive"
-                            onClick={() => handleReject(review)}
-                            disabled={submittingIds.includes(review.reviewId)}
-                          >
-                            ❌
-                          </Button>
+                         <Button
+  size="sm"
+  variant="default"
+  className="bg-green-600 hover:bg-green-700 text-white"
+  onClick={() => handleApprove(review)}
+  disabled={submittingIds.includes(review.reviewId)}
+>
+  ✅
+</Button>
+
+<Button
+  size="sm"
+  variant="destructive"
+  onClick={() => handleReject(review)}
+  disabled={submittingIds.includes(review.reviewId)}
+>
+  ❌
+</Button>
                         </div>
                       </TableCell>
                     </TableRow>
