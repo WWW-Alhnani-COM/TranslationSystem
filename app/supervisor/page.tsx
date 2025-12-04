@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 export default function SupervisorDashboard() {
-  const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
+  const [dashboardStats, setDashboardStats] = useState<DashboardStatsDto | null>(null);
   const [reviewProjects, setReviewProjects] = useState<Project[]>([]);
   const [completedProjects, setCompletedProjects] = useState<Project[]>([]);
   const [urgentProjects, setUrgentProjects] = useState<Project[]>([]);
