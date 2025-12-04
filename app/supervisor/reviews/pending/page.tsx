@@ -19,9 +19,20 @@ export default function SupervisorPendingReviewsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [submittingIds, setSubmittingIds] = useState<number[]>([]);
+  const [authLoading, setAuthLoading] = useState(true); // 🔧 أضف هذا
 
-  const { user, loading: authLoading } = useAuth();
+  const { user } = useAuth(); // 🔧 أزل loading من هنا
   const router = useRouter();
+
+  useEffect(() => {
+    // 🔧 معالجة تحميل المصادقة
+    const checkAuth = async () => {
+      // انتظر لمدة قصيرة للتأكد من تحميل بيانات المستخدم
+      await new Promise(resolve => setTimeout(resolve, 100));
+      setAuthLoading(false);
+    };
+    checkAuth();
+  }, []);
 
   useEffect(() => {
     const fetchPendingReviews = async () => {
@@ -33,7 +44,7 @@ export default function SupervisorPendingReviewsPage() {
 
       try {
         setLoading(true);
-        const  ReviewResponseDto: any[] = await apiClient.get("Reviews/pending");
+        const data: any[] = await apiClient.get("Reviews/pending"); // 🔧 أصلح اسم المتغير
 
         // ✅ التحقق: عرض فقط المراجعات التي ليس لها موافقات
         const pendingOnly = data.filter(
