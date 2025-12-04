@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation";
 import type { 
   AssignmentResponseDto, 
   ReviewResponseDto, 
-  DashboardStats,
+  DashboardStatsDto,
   ProjectProgressDto 
 } from "@/types";
 
@@ -32,7 +32,7 @@ export default function ReviewerDashboard() {
   const { user } = useAuth();
   const router = useRouter();
   
-  const [stats, setStats] = useState<DashboardStats | null>(null);
+  const [stats, setStats] = useState<DashboardStatsDto | null>(null);
   const [assignments, setAssignments] = useState<AssignmentResponseDto[]>([]);
   const [recentReviews, setRecentReviews] = useState<ReviewResponseDto[]>([]);
   const [projectsProgress, setProjectsProgress] = useState<ProjectProgressDto[]>([]);
@@ -48,7 +48,7 @@ export default function ReviewerDashboard() {
       
       if (user?.userId) {
         // جلب إحصائيات لوحة التحكم الخاصة بالمستخدم
-        const dashboardStats = await apiClient.get(`Statistics/dashboard/user/${user.userId}`);
+        const DashboardStatsDto = await apiClient.get(`Statistics/dashboard/user/${user.userId}`);
         setStats(dashboardStats);
 
         // جلب مهام المراجع
