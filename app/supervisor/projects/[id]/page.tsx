@@ -71,6 +71,191 @@ interface Project {
   totalReviewers: number;
 }
 
+// 🔧 الحل: تعريف getRoleBadge خارج المكون الرئيسي
+const getRoleBadge = (role: string) => {
+  const roleConfig: Record<string, { variant: "default" | "secondary" | "outline", label: string }> = {
+    'Translator': { variant: 'default', label: 'مترجم' },
+    'Reviewer': { variant: 'secondary', label: 'مراجع' },
+    'Supervisor': { variant: 'outline', label: 'مشرف' },
+    'DataEntry': { variant: 'outline', label: 'مدخل بيانات' }
+  };
+  const config = roleConfig[role] || { variant: 'outline', label: role };
+  return <Badge variant={config.variant} className="text-xs">{config.label}</Badge>;
+};
+
+// تعريف getProjectStatusBadge أيضاً خارج المكون الرئيسي
+const getProjectStatusBadge = (status: string) => {
+  const statusConfig: Record<string, { variant: "default" | "secondary" | "destructive" | "outline", label: string, icon: React.ReactNode }> = {
+    'Draft': { variant: 'outline', label: 'مسودة', icon: <FileText className="w-3 h-3" /> },
+    'Active': { variant: 'default', label: 'نشط', icon: <Clock className="w-3 h-3" /> },
+    'InProgress': { variant: 'secondary', label: 'قيد التنفيذ', icon: <Users className="w-3 h-3" /> },
+    'Completed': { variant: 'default', label: 'منتهي', icon: <CheckCircle className="w-3 h-3" /> },
+    'Cancelled': { variant: 'destructive', label: 'ملغي', icon: <AlertTriangle className="w-3 h-3" /> }
+  };
+  const config = statusConfig[status] || { variant: 'outline', label: status, icon: <FileText className="w-3 h-3" /> };
+  return (
+    <Badge variant={config.variant} className="flex items-center gap-1 text-xs">
+      {config.icon}
+      {config.label}
+    </Badge>
+  );
+};
+
+// 🔧 إعادة تعريف AssignmentCard مع إضافة getRoleBadge كمعامل
+interface AssignmentCardProps {
+  assignment: Assignment;
+}
+
+function AssignmentCard({ assignment }: AssignmentCardProps) {
+  return (
+    <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
+      <div className="flex items-center gap-4 flex-1">
+        <div className="p-2 rounded-lg bg-primary/10 text-primary">
+          <User className="w-5 h-5" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1">
+            <h4 className="font-semibold truncate">{assignment.userName}</h4>
+            {getRoleBadge(assignment.role)} {/* ✅ الآن يعمل */}
+          </div>
+          <p className="text-sm text-muted-foreground mb-2">
+            {assignment.userEmail}
+          </p>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span>اللغة: {assignment.targetLanguageName}</span>
+            <span>الحالة: {assignment.status}</span>
+            <span>المهام: {assignment.translationCount}</span>
+          </div>
+        </div>
+      </div>
+      <Button variant="ghost" size="icon">
+        <ArrowRight className="w-4 h-4" />
+      </Button>
+    </div>
+  );
+}
+
+// مكونات مساعدة أخرى
+interface StatCardProps { 
+  title: string; 
+  value: string; 
+  description: string; 
+  icon: React.ReactNode; 
+  color: "blue" | "green" | "orange" | "purple"; 
+}
+
+function StatCard({ title, value, description, icon, color }: StatCardProps) {
+  const colorClasses = {
+    blue: "bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-800",
+    green: "bg-green-50 text-green-600 border-green-200 dark:bg-green-950/20 dark:text-green-400 dark:border-green-800",
+    orange: "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-950/20 dark:text-orange-400 dark:border-orange-800",
+    purple: "bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-950/20 dark:text-purple-400 dark:border-purple-800"
+  };
+  
+  return (
+    <Card className={`border-2 ${colorClasses[color]}`}>
+      <CardContent className="p-6 flex justify-between items-center">
+        <div>
+          <p className="text-2xl font-bold mb-1">{value}</p>
+          <p className="text-sm font-medium">{title}</p>
+          <p className="text-xs opacity-75 mt-1">{description}</p>
+        </div>
+        <div className="p-2 rounded-lg bg-current/20">
+          {icon}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface ProgressItemProps { 
+  label: string; 
+  value: number; 
+  total: number; 
+  color: "blue" | "green" | "purple"; 
+}
+
+function ProgressItem({ label, value, total, color }: ProgressItemProps) {
+  const percentage = total > 0 ? (value / total) * 100 : 0;
+  const colorClasses = { 
+    blue: "bg-blue-500", 
+    green: "bg-green-500", 
+    purple: "bg-purple-500" 
+  };
+  
+  return (
+    <div>
+      <div className="flex justify-between text-sm mb-2">
+        <span>{label}</span>
+        <span>
+          {value} / {total} ({percentage.toFixed(1)}%)
+        </span>
+      </div>
+      <div className="w-full bg-secondary rounded-full h-2">
+        <div 
+          className={`rounded-full h-2 transition-all duration-300 ${colorClasses[color]}`} 
+          style={{ width: `${percentage}%` }} 
+        />
+      </div>
+    </div>
+  );
+}
+
+interface InfoItemProps { 
+  label: string; 
+  value: React.ReactNode; 
+}
+
+function InfoItem({ label, value }: InfoItemProps) {
+  return (
+    <div className="flex justify-between items-center py-2 border-b last:border-b-0">
+      <span className="text-sm font-medium text-muted-foreground">{label}</span>
+      <span className="text-sm">{value}</span>
+    </div>
+  );
+}
+
+interface LanguageSectionProps { 
+  title: string; 
+  language?: Language; 
+  languages?: Language[]; 
+}
+
+function LanguageSection({ title, language, languages }: LanguageSectionProps) {
+  return (
+    <div>
+      <h4 className="font-semibold mb-3">{title}</h4>
+      <div className="space-y-2">
+        {language ? (
+          <div className="flex items-center justify-between p-3 border rounded-lg">
+            <div className="flex items-center gap-3">
+              <Languages className="w-4 h-4 text-muted-foreground" />
+              <span>{language.languageName}</span>
+              <Badge variant="outline" className="text-xs">
+                {language.languageCode}
+              </Badge>
+            </div>
+          </div>
+        ) : languages?.map((lang) => (
+          <div key={lang.languageId} className="flex items-center justify-between p-3 border rounded-lg">
+            <div className="flex items-center gap-3">
+              <Languages className="w-4 h-4 text-muted-foreground" />
+              <span>{lang.languageName}</span>
+              <Badge variant="outline" className="text-xs">
+                {lang.languageCode}
+              </Badge>
+            </div>
+            <Badge variant={lang.isActive ? "default" : "outline"} className="text-xs">
+              {lang.isActive ? "نشط" : "غير نشط"}
+            </Badge>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// المكون الرئيسي
 export default function ProjectDetailsPage() {
   const params = useParams();
   const id = params.id as string;
@@ -84,7 +269,6 @@ export default function ProjectDetailsPage() {
       setLoading(true);
       setError(null);
       
-      // استخدم الرابط الصحيح مع API الخاص بك
       const response = await fetch(`https://samali1-001-site1.stempurl.com/api/projects/${id}`);
       
       if (!response.ok) {
@@ -103,34 +287,6 @@ export default function ProjectDetailsPage() {
   useEffect(() => {
     fetchProjectData();
   }, [id]);
-
-  const getProjectStatusBadge = (status: string) => {
-    const statusConfig: Record<string, { variant: "default" | "secondary" | "destructive" | "outline", label: string, icon: React.ReactNode }> = {
-      'Draft': { variant: 'outline', label: 'مسودة', icon: <FileText className="w-3 h-3" /> },
-      'Active': { variant: 'default', label: 'نشط', icon: <Clock className="w-3 h-3" /> },
-      'InProgress': { variant: 'secondary', label: 'قيد التنفيذ', icon: <Users className="w-3 h-3" /> },
-      'Completed': { variant: 'default', label: 'منتهي', icon: <CheckCircle className="w-3 h-3" /> },
-      'Cancelled': { variant: 'destructive', label: 'ملغي', icon: <AlertTriangle className="w-3 h-3" /> }
-    };
-    const config = statusConfig[status] || { variant: 'outline', label: status, icon: <FileText className="w-3 h-3" /> };
-    return (
-      <Badge variant={config.variant} className="flex items-center gap-1 text-xs">
-        {config.icon}
-        {config.label}
-      </Badge>
-    );
-  };
-
-  const getRoleBadge = (role: string) => {
-    const roleConfig: Record<string, { variant: "default" | "secondary" | "outline", label: string }> = {
-      'Translator': { variant: 'default', label: 'مترجم' },
-      'Reviewer': { variant: 'secondary', label: 'مراجع' },
-      'Supervisor': { variant: 'outline', label: 'مشرف' },
-      'DataEntry': { variant: 'outline', label: 'مدخل بيانات' }
-    };
-    const config = roleConfig[role] || { variant: 'outline', label: role };
-    return <Badge variant={config.variant} className="text-xs">{config.label}</Badge>;
-  };
 
   // ✅ الحل: وضع الـ return الشرطي بعد جميع التعريفات وقبل JSX الرئيسي
   if (loading) {
@@ -344,7 +500,7 @@ export default function ProjectDetailsPage() {
               project.assignments.map((assignment) => (
                 <AssignmentCard 
                   key={assignment.id} 
-                  assignment={assignment} 
+                  assignment={assignment}
                 />
               ))
             ) : (
@@ -354,156 +510,6 @@ export default function ProjectDetailsPage() {
             )}
           </CardContent>
         </Card>
-      </div>
-    </div>
-  );
-}
-
-// مكونات مساعدة
-
-interface StatCardProps { 
-  title: string; 
-  value: string; 
-  description: string; 
-  icon: React.ReactNode; 
-  color: "blue" | "green" | "orange" | "purple"; 
-}
-
-function StatCard({ title, value, description, icon, color }: StatCardProps) {
-  const colorClasses = {
-    blue: "bg-blue-50 text-blue-600 border-blue-200 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-800",
-    green: "bg-green-50 text-green-600 border-green-200 dark:bg-green-950/20 dark:text-green-400 dark:border-green-800",
-    orange: "bg-orange-50 text-orange-600 border-orange-200 dark:bg-orange-950/20 dark:text-orange-400 dark:border-orange-800",
-    purple: "bg-purple-50 text-purple-600 border-purple-200 dark:bg-purple-950/20 dark:text-purple-400 dark:border-purple-800"
-  };
-  
-  return (
-    <Card className={`border-2 ${colorClasses[color]}`}>
-      <CardContent className="p-6 flex justify-between items-center">
-        <div>
-          <p className="text-2xl font-bold mb-1">{value}</p>
-          <p className="text-sm font-medium">{title}</p>
-          <p className="text-xs opacity-75 mt-1">{description}</p>
-        </div>
-        <div className="p-2 rounded-lg bg-current/20">
-          {icon}
-        </div>
-      </CardContent>
-    </Card>
-  );
-}
-
-interface ProgressItemProps { 
-  label: string; 
-  value: number; 
-  total: number; 
-  color: "blue" | "green" | "purple"; 
-}
-
-function ProgressItem({ label, value, total, color }: ProgressItemProps) {
-  const percentage = total > 0 ? (value / total) * 100 : 0;
-  const colorClasses = { 
-    blue: "bg-blue-500", 
-    green: "bg-green-500", 
-    purple: "bg-purple-500" 
-  };
-  
-  return (
-    <div>
-      <div className="flex justify-between text-sm mb-2">
-        <span>{label}</span>
-        <span>
-          {value} / {total} ({percentage.toFixed(1)}%)
-        </span>
-      </div>
-      <div className="w-full bg-secondary rounded-full h-2">
-        <div 
-          className={`rounded-full h-2 transition-all duration-300 ${colorClasses[color]}`} 
-          style={{ width: `${percentage}%` }} 
-        />
-      </div>
-    </div>
-  );
-}
-
-interface InfoItemProps { 
-  label: string; 
-  value: React.ReactNode; 
-}
-
-function InfoItem({ label, value }: InfoItemProps) {
-  return (
-    <div className="flex justify-between items-center py-2 border-b last:border-b-0">
-      <span className="text-sm font-medium text-muted-foreground">{label}</span>
-      <span className="text-sm">{value}</span>
-    </div>
-  );
-}
-
-function AssignmentCard({ assignment }: { assignment: Assignment }) {
-  return (
-    <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
-      <div className="flex items-center gap-4 flex-1">
-        <div className="p-2 rounded-lg bg-primary/10 text-primary">
-          <User className="w-5 h-5" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h4 className="font-semibold truncate">{assignment.userName}</h4>
-            {getRoleBadge(assignment.role)}
-          </div>
-          <p className="text-sm text-muted-foreground mb-2">
-            {assignment.userEmail}
-          </p>
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <span>اللغة: {assignment.targetLanguageName}</span>
-            <span>الحالة: {assignment.status}</span>
-            <span>المهام: {assignment.translationCount}</span>
-          </div>
-        </div>
-      </div>
-      <Button variant="ghost" size="icon">
-        <ArrowRight className="w-4 h-4" />
-      </Button>
-    </div>
-  );
-}
-
-interface LanguageSectionProps { 
-  title: string; 
-  language?: Language; 
-  languages?: Language[]; 
-}
-
-function LanguageSection({ title, language, languages }: LanguageSectionProps) {
-  return (
-    <div>
-      <h4 className="font-semibold mb-3">{title}</h4>
-      <div className="space-y-2">
-        {language ? (
-          <div className="flex items-center justify-between p-3 border rounded-lg">
-            <div className="flex items-center gap-3">
-              <Languages className="w-4 h-4 text-muted-foreground" />
-              <span>{language.languageName}</span>
-              <Badge variant="outline" className="text-xs">
-                {language.languageCode}
-              </Badge>
-            </div>
-          </div>
-        ) : languages?.map((lang) => (
-          <div key={lang.languageId} className="flex items-center justify-between p-3 border rounded-lg">
-            <div className="flex items-center gap-3">
-              <Languages className="w-4 h-4 text-muted-foreground" />
-              <span>{lang.languageName}</span>
-              <Badge variant="outline" className="text-xs">
-                {lang.languageCode}
-              </Badge>
-            </div>
-            <Badge variant={lang.isActive ? "default" : "outline"} className="text-xs">
-              {lang.isActive ? "نشط" : "غير نشط"}
-            </Badge>
-          </div>
-        ))}
       </div>
     </div>
   );
