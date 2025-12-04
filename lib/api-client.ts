@@ -1,9 +1,15 @@
 // src/lib/api-client.ts
 import { toast } from "@/components/ui/use-toast";
 
-const API_BASE_URL = "http://samali1-001-site1.stempurl.com/api";
+// استخدم Proxy المحلي بدلاً من الاتصال المباشر بالـ Backend
+const getApiBaseUrl = () => {
+  // في الإنتاج والتطوير، استخدم Proxy المحلي
+  return '/api';
+};
 
-// دالة آمنة للحصول على التوكن (فقط في بيئة المتصفح)
+const API_BASE_URL = getApiBaseUrl();
+
+// دالة آمنة للحصول على التوكن
 const getToken = (): string | null => {
   if (typeof window !== 'undefined') {
     return localStorage.getItem("token");
@@ -11,10 +17,11 @@ const getToken = (): string | null => {
   return null;
 };
 
-// معالجة الاستجابة من الـ API
+// معالجة الاستجابة
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
     let errorMessage = `خطأ في الطلب (${response.status})`;
+    
     try {
       const errorData = await response.json();
       errorMessage = errorData.message || errorMessage;
@@ -24,31 +31,35 @@ const handleResponse = async (response: Response) => {
         if (text) errorMessage = text;
       } catch {}
     }
+    
+    // معالجة 401 (غير مصرح)
+    if (response.status === 401) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login?session_expired=true';
+      }
+    }
+    
     throw new Error(errorMessage);
   }
 
-  // استجابة فارغة (مثل DELETE)
-  if (response.status === 204) {
-    return null;
-  }
+  if (response.status === 204) return null;
 
   const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
+  if (contentType?.includes("application/json")) {
     const data = await response.json();
-
-    // إذا كانت الاستجابة على شكل ApiResponse<T>
+    
     if (typeof data === "object" && data !== null && "success" in data) {
       if (!data.success) {
         throw new Error(data.message || "فشلت العملية");
       }
-      return data.data; // نُعيد فقط الحمولة الفعلية
+      return data.data;
     }
-
-    // إذا كانت استجابة مباشرة (نادر، لكن ممكن في بعض الـ endpoints)
+    
     return data;
   }
 
-  // نص عادي
   return await response.text();
 };
 
@@ -60,7 +71,14 @@ const apiRequest = async (
   params?: Record<string, any>
 ) => {
   try {
-    const url = new URL(`${API_BASE_URL}/${endpoint}`);
+    // تنظيف الـ endpoint
+    endpoint = endpoint.replace(/^\/+/, '');
+    
+    const token = getToken();
+    
+    // بناء URL كامل (مسار نسبي لـ Next.js API route)
+    const url = new URL(`${API_BASE_URL}/${endpoint}`, window.location.origin);
+    
     if (params) {
       Object.keys(params).forEach((key) => {
         if (params[key] !== undefined && params[key] !== null) {
@@ -68,10 +86,6 @@ const apiRequest = async (
         }
       });
     }
-
-    // ✅ هنا يأتي التعديل الأساسي:
-    // لا نستخدم localStorage إلا في بيئة المتصفح
-    const token = getToken(); // ← آمن على الخادم والعميل
 
     const options: RequestInit = {
       method,
@@ -86,12 +100,13 @@ const apiRequest = async (
       options.body = JSON.stringify(data);
     }
 
+    console.log(`API Request: ${method} ${url.toString()}`);
+    
     const response = await fetch(url.toString(), options);
     return await handleResponse(response);
   } catch (error: any) {
-    console.error(`API Error [${method} ${endpoint}]:`, error);
+    console.error(`API Error [${endpoint}]:`, error);
 
-    // عرض رسالة خطأ للمستخدم (فقط في بيئة المتصفح)
     if (typeof window !== 'undefined') {
       toast({
         variant: "destructive",
@@ -104,7 +119,6 @@ const apiRequest = async (
   }
 };
 
-// تعريف الـ client
 export const apiClient = {
   get: (endpoint: string, params?: Record<string, any>) =>
     apiRequest(endpoint, "GET", undefined, params),
