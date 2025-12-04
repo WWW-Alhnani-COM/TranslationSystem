@@ -1,11 +1,11 @@
 // next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // إعدادات الصور
+  // إعدادات الصور - تغيير إلى HTTPS
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
+        protocol: 'https', // ⬅️ تغيير من http إلى https
         hostname: 'samali1-001-site1.stempurl.com',
         pathname: '/**',
       },
@@ -13,26 +13,22 @@ const nextConfig = {
     unoptimized: true,
   },
   
-  // ✅ الحل الجديد: استخدم rewrites مع headers إضافية
+  // ✅ إصلاح rewrites لاستخدام HTTPS
   async rewrites() {
     return [
       {
         source: '/api/:path*',
-        destination: 'http://samali1-001-site1.stempurl.com/api/:path*',
-        // إضافة headers للتحايل على Mixed Content
-        basePath: false,
+        destination: 'https://samali1-001-site1.stempurl.com/api/:path*', // ⬅️ تغيير إلى https
       },
     ];
   },
   
-  // ✅ إضافة headers لتعطيل Mixed Content protection مؤقتاً
+  // ✅ تحديث headers لـ HTTPS
   async headers() {
     return [
       {
         source: '/api/:path*',
         headers: [
-          // هذا قد يساعد في بعض المتصفحات
-          { key: 'Content-Security-Policy', value: "default-src 'self' http: https: data: blob: 'unsafe-inline' 'unsafe-eval'; connect-src 'self' http: https: wss:;" },
           { key: 'Access-Control-Allow-Origin', value: '*' },
           { key: 'Access-Control-Allow-Methods', value: 'GET,POST,PUT,DELETE,PATCH,OPTIONS' },
           { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization, Accept, X-Requested-With' },
@@ -42,8 +38,10 @@ const nextConfig = {
       {
         source: '/:path*',
         headers: [
-          // سياسة أمن محتوى متساهلة مؤقتاً
-          { key: 'Content-Security-Policy', value: "upgrade-insecure-requests" },
+          // إزالة upgrade-insecure-requests لأننا نستخدم HTTPS الآن
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-XSS-Protection', value: '1; mode=block' },
         ],
       },
     ];
@@ -53,12 +51,12 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   
-  // إعدادات TypeScript
+  // إعادة تفعيل TypeScript
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false, // ⬅️ غير إلى false
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false, // ⬅️ غير إلى false
   },
 };
 
