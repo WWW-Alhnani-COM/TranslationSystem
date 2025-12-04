@@ -1,15 +1,10 @@
 // src/lib/api-client.ts
 import { toast } from "@/components/ui/use-toast";
 
-// استخدم Proxy المحلي بدلاً من الاتصال المباشر بالـ Backend
-const getApiBaseUrl = () => {
-  // في الإنتاج والتطوير، استخدم Proxy المحلي
-  return '/api';
-};
+// استخدم Proxy دائماً
+const API_BASE_URL = '/api';
 
-const API_BASE_URL = getApiBaseUrl();
-
-// دالة آمنة للحصول على التوكن
+// دالة للحصول على التوكن
 const getToken = (): string | null => {
   if (typeof window !== 'undefined') {
     return localStorage.getItem("token");
@@ -25,20 +20,17 @@ const handleResponse = async (response: Response) => {
     try {
       const errorData = await response.json();
       errorMessage = errorData.message || errorMessage;
-    } catch (e) {
+    } catch {
       try {
         const text = await response.text();
         if (text) errorMessage = text;
       } catch {}
     }
     
-    // معالجة 401 (غير مصرح)
-    if (response.status === 401) {
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        window.location.href = '/login?session_expired=true';
-      }
+    if (response.status === 401 && typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login?session_expired=true';
     }
     
     throw new Error(errorMessage);
@@ -63,7 +55,7 @@ const handleResponse = async (response: Response) => {
   return await response.text();
 };
 
-// تنفيذ الطلب
+// تنفيذ الطلب مع mode خاص
 const apiRequest = async (
   endpoint: string,
   method: string,
@@ -74,9 +66,7 @@ const apiRequest = async (
     // تنظيف الـ endpoint
     endpoint = endpoint.replace(/^\/+/, '');
     
-    const token = getToken();
-    
-    // بناء URL كامل (مسار نسبي لـ Next.js API route)
+    // بناء URL - دائمًا استخدم Proxy
     const url = new URL(`${API_BASE_URL}/${endpoint}`, window.location.origin);
     
     if (params) {
@@ -86,7 +76,9 @@ const apiRequest = async (
         }
       });
     }
-
+    
+    const token = getToken();
+    
     const options: RequestInit = {
       method,
       headers: {
@@ -94,6 +86,8 @@ const apiRequest = async (
         "Accept": "application/json",
         ...(token && { "Authorization": `Bearer ${token}` }),
       },
+      // ⚠️ مهم: لا تستخدم mode: 'cors' هنا
+      // دع الـ Proxy يتعامل مع CORS
     };
 
     if (data !== undefined) {
@@ -108,10 +102,23 @@ const apiRequest = async (
     console.error(`API Error [${endpoint}]:`, error);
 
     if (typeof window !== 'undefined') {
+      // عرض رسالة مناسبة
+      let title = "خطأ في الاتصال";
+      let description = error.message || "تعذر الاتصال بالخادم";
+      
+      if (error.message.includes('Mixed Content')) {
+        title = "مشكلة في الاتصال الآمن";
+        description = "جاري تفعيل شهادة SSL. الرجاء المحاولة مرة أخرى خلال 1-2 ساعة.";
+      } else if (error.message.includes('Failed to fetch')) {
+        title = "فشل الاتصال";
+        description = "تعذر الوصول إلى الخادم الخلفي. تأكد من اتصالك بالإنترنت.";
+      }
+      
       toast({
         variant: "destructive",
-        title: "خطأ في الاتصال",
-        description: error.message || "تعذر الاتصال بالخادم",
+        title,
+        description,
+        duration: 10000,
       });
     }
 
