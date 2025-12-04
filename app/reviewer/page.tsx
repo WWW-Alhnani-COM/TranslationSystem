@@ -256,7 +256,7 @@ export default function ReviewerDashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-medium truncate">{assignment.projectName}</h4>
-                        {getPriorityBadge(assignment.deadline)}
+                        {getPriorityBadge(assignment.deadline ?? null)}
                       </div>
                       <div className="flex items-center gap-4 text-sm text-muted-foreground">
                         <span className="flex items-center gap-1">
