@@ -376,19 +376,18 @@ export default function ProjectDetailsPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <LanguageSection 
-                  title="اللغة المصدر" 
-                  language={{
-                    languageName: project.sourceLanguageName,
-                    languageCode: project.sourceLanguageCode
-                  }} 
-                />
+               <LanguageSection 
+  title="اللغة المصدر" 
+  language={project.sourceLanguage} 
+/>
+
                 
                 {project.targetLanguages && project.targetLanguages.length > 0 && (
                   <LanguageSection 
-                    title="اللغات المستهدفة" 
-                    languages={project.targetLanguages} 
-                  />
+  title="اللغات المستهدفة" 
+  languages={project.targetLanguages} 
+/>
+
                 )}
               </div>
             </CardContent>
