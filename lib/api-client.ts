@@ -2,8 +2,7 @@
 import { toast } from "@/components/ui/use-toast";
 
 // استخدم Proxy على Vercel
-const API_BASE_URL = '/api';
-
+const API_BASE_URL = 'https://samali1-001-site1.stempurl.com/api';
 // دالة للحصول على التوكن
 const getToken = (): string | null => {
   if (typeof window !== 'undefined') {
