@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // 🔧 إعادة كتابة جميع API calls إلى HTTPS
+  // إعادة كتابة API calls
   async rewrites() {
     return [
       {
@@ -13,7 +13,7 @@ const nextConfig = {
     ];
   },
   
-  // 🔧 إضافة Headers لإجبار HTTPS
+  // إضافة headers
   async headers() {
     return [
       {
@@ -27,29 +27,14 @@ const nextConfig = {
             key: 'Content-Security-Policy',
             value: "upgrade-insecure-requests"
           },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY'
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
-          }
         ]
       }
     ];
   },
   
-  // 🔧 تعطيل minification مؤقتاً للتصحيح
-  swcMinify: false,
-  
-  // 🔧 إضافة ID بناء فريد لإجبار إعادة البناء
-  generateBuildId: async () => {
-    return `build-${Date.now()}`;
+  // إصلاح warning
+  experimental: {
+    // إعدادات تجريبية إذا لزم
   }
 };
 
